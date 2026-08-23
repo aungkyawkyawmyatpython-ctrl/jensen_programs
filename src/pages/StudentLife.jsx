@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PreloadedGalleryImage from "../components/PreloadedGalleryImage";
 import { Reveal, SafeImage } from "../components/SiteElements";
 import { studentLifeEvents } from "../data/studentLifeEvents";
 import "./StudentLife.css";
@@ -128,10 +129,21 @@ export default function StudentLife() {
             </header>
 
             <div className="activity-gallery-image">
-              <SafeImage
+              <PreloadedGalleryImage
+                key={activeEvent.images[gallery.imageIndex]}
                 src={activeEvent.images[gallery.imageIndex]}
+                previousSrc={
+                  activeEvent.images[
+                    (gallery.imageIndex - 1 + activeEvent.images.length) %
+                      activeEvent.images.length
+                  ]
+                }
+                nextSrc={
+                  activeEvent.images[
+                    (gallery.imageIndex + 1) % activeEvent.images.length
+                  ]
+                }
                 alt={`${activeEvent.title} activity photo ${gallery.imageIndex + 1} of ${activeEvent.images.length}`}
-                loading="eager"
               />
             </div>
 

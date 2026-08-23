@@ -1,0 +1,334 @@
+.admissions-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.admissions-section-heading {
+  max-width: 48rem;
+  margin-bottom: 2.25rem;
+}
+
+.admissions-section-heading h2 {
+  margin: 0.35rem 0 0.8rem;
+}
+
+.admissions-section-heading > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.admissions-why {
+  background: var(--white);
+}
+
+.admissions-strengths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid var(--line);
+}
+
+.admissions-strengths article {
+  min-height: 100%;
+  padding: 1.8rem clamp(1rem, 3vw, 2rem);
+  border-left: 1px solid var(--line);
+}
+
+.admissions-strengths > .reveal:first-child article {
+  border-left: 0;
+}
+
+.admissions-strengths h3,
+.admissions-strengths p {
+  margin: 0;
+}
+
+.admissions-strengths h3 {
+  color: var(--navy-900);
+}
+
+.admissions-strengths p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.admissions-programs {
+  background: var(--sage-100);
+}
+
+.admissions-programs-layout,
+.admissions-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: start;
+}
+
+.admissions-program-list {
+  display: grid;
+}
+
+.admissions-program-list article {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.admissions-program-list .reveal:last-child article {
+  border-bottom: 1px solid var(--line);
+}
+
+.admissions-program-list span {
+  color: var(--teal-600);
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.admissions-program-list h3,
+.admissions-program-list p {
+  margin: 0;
+}
+
+.admissions-program-list p {
+  margin-top: 0.2rem;
+  color: var(--muted);
+}
+
+.admissions-process {
+  background: var(--white);
+}
+
+.admissions-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  background: var(--line);
+  list-style: none;
+}
+
+.admissions-steps > .reveal {
+  height: 100%;
+  background: var(--white);
+}
+
+.admissions-steps li {
+  min-height: 100%;
+  padding: clamp(1.35rem, 3vw, 2rem);
+}
+
+.admissions-steps li > span {
+  color: var(--teal-600);
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.admissions-steps h3 {
+  margin: 1.4rem 0 0;
+}
+
+.admissions-steps p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.admissions-details {
+  background: var(--paper);
+}
+
+.admissions-information-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.admissions-information-grid > .reveal {
+  height: 100%;
+}
+
+.admissions-information-grid article {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.admissions-information-grid h3,
+.admissions-information-grid p {
+  margin: 0;
+}
+
+.admissions-information-grid p {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.admissions-information-contact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.admissions-information-contact p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.admissions-information-contact a {
+  flex: 0 0 auto;
+  color: var(--teal-600);
+  font-weight: 850;
+}
+
+.admissions-faq {
+  background: var(--white);
+}
+
+.admissions-faq .admissions-section-heading button {
+  margin-top: 1.5rem;
+  padding: 0 0 0.35rem;
+  border-bottom: 2px solid var(--gold);
+  color: var(--navy-800);
+  font-weight: 850;
+}
+
+.admissions-faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.admissions-faq-list details {
+  border-bottom: 1px solid var(--line);
+}
+
+.admissions-faq-list summary {
+  padding: 1.2rem 0;
+  color: var(--navy-900);
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.admissions-faq-list details p {
+  margin: 0;
+  padding: 0 1.5rem 1.25rem 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.admissions-final-cta {
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.admissions-final-cta > .reveal {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.admissions-final-cta .eyebrow {
+  color: var(--gold);
+}
+
+.admissions-final-cta h2 {
+  margin: 0.35rem 0 0.8rem;
+  color: var(--white);
+}
+
+.admissions-final-cta p:not(.eyebrow) {
+  max-width: 42rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+.admissions-final-cta > .reveal > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.admissions-contact-cta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  padding: 0.8rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-weight: 850;
+}
+
+.admissions-contact-cta:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.admissions-application-entry .admissions {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 1000px) {
+  .admissions-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .admissions-strengths,
+  .admissions-information-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-strengths article {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .admissions-strengths > .reveal:first-child article {
+    border-top: 0;
+  }
+
+  .admissions-programs-layout,
+  .admissions-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .admissions-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-final-cta > .reveal > div {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admissions-information-contact {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admissions-final-cta .button,
+  .admissions-contact-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

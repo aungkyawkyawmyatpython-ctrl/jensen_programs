@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Reveal, SafeImage } from "./components/SiteElements";
 import Home from "./pages/Home";
 import AboutInstitutionalSections from "./pages/About";
+import Admissions from "./pages/Admissions";
 import Faculty from "./pages/Faculty";
 import StudentLife from "./pages/StudentLife";
 
@@ -29,7 +30,7 @@ const menuGroups = [
   {
     id: "admissions",
     title: "Admissions",
-    links: ["How to Apply", "Tuition & Aid", "Visit Virya", "Family Guide"],
+    links: ["How to Apply", "Programs Offered", "Tuition & Fees", "Admissions FAQ"],
     image: SCHOOL_IMAGES.admissions,
   },
   {
@@ -155,9 +156,9 @@ const pageDetails = {
   },
   admissions: {
     title: "Admissions",
-    headline: "A clear path from inquiry to enrollment.",
-    text: "Learn how to apply, schedule a visit, understand tuition, and prepare your child for a successful start.",
-    actions: [["visit", "Book a Tour", "button gold"]],
+    headline: "Admissions",
+    text: "Explore programs from Kindergarten through Grade 9 and start an admissions inquiry with VIRYA.",
+    actions: [["admissions-form", "Apply Now", "button gold"]],
   },
   "student-life": {
     title: "Student Life",
@@ -223,11 +224,6 @@ const utilityLinks = [
 ];
 
 const pageHighlights = {
-  admissions: [
-    ["Step 1", "Tell us about your child", "Start with a short inquiry so admissions can recommend the right next step.", "admissions", "Start Inquiry"],
-    ["Step 2", "Visit the campus", "Tour classrooms, meet teachers, and see the school day in motion.", "visit", "Book a Tour"],
-    ["Step 3", "Plan enrollment", "Review placement, documents, tuition, and start dates with the admissions office.", "directory", "Contact Admissions"],
-  ],
   about: [
     ["Mission", "A private school with a public purpose", "Virya is built around scholarship, character, wellbeing, and service.", "community", "View Numbers"],
     ["Leadership", "People who guide the culture", "Faculty and school leaders work closely with families and students.", "directory", "Find Offices"],
@@ -708,7 +704,7 @@ function NewsEvents() {
 
 function AdmissionsForm({ application, submissionStatus, updateApplication, submitApplication }) {
   return (
-    <section className="section admissions" id="admissions">
+    <section className="section admissions" id="admissions-inquiry">
       <Reveal className="admissions-copy" direction="left">
         <p className="eyebrow">Take the Next Step</p>
         <h2>Start an admissions inquiry.</h2>
@@ -791,6 +787,15 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
     actions: [["home", "Return Home", "button gold"]],
   };
 
+  const focusAdmissionsForm = () => {
+    const formSection = document.getElementById("admissions-inquiry");
+    if (!formSection) return;
+    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => {
+      formSection.querySelector("input")?.focus({ preventScroll: true });
+    }, 450);
+  };
+
   return (
     <>
       <section className="interior-hero">
@@ -800,7 +805,7 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
           <p>{content.text}</p>
           <div className="hero-actions">
             {content.actions.map(([target, label, className]) => (
-              <button className={className} type="button" onClick={() => navigate(target)} key={`${page}-${label}`}>
+              <button className={className} type="button" onClick={() => target === "admissions-form" ? focusAdmissionsForm() : navigate(target)} key={`${page}-${label}`}>
                 {label}
               </button>
             ))}
@@ -817,11 +822,18 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
           ) : page === "faculty" ? (
             <Faculty facultyData={teamMembers} />
           ) : page === "admissions" ? (
-            <AdmissionsForm
-              application={application}
-              submissionStatus={submissionStatus}
-              updateApplication={updateApplication}
-              submitApplication={submitApplication}
+            <Admissions
+              navigate={navigate}
+              contactDetails={contactDetails}
+              onApply={focusAdmissionsForm}
+              applicationForm={
+                <AdmissionsForm
+                  application={application}
+                  submissionStatus={submissionStatus}
+                  updateApplication={updateApplication}
+                  submitApplication={submitApplication}
+                />
+              }
             />
           ) : page === "academics" ? (
             <Programs />
