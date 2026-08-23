@@ -2,7 +2,7 @@ export default function Header({
   headerHidden,
   navigate,
   menuGroups,
-  page,
+  pathname,
   searchOpen,
   setSearchOpen,
   mobileMenuOpen,
@@ -15,7 +15,7 @@ export default function Header({
   return (
     <header className={`site-header ${headerHidden ? "hidden" : ""}`}>
       <div className="main-nav">
-        <button className="brand" type="button" onClick={() => navigate("home")} aria-label="Virya home">
+        <button className="brand" type="button" onClick={() => navigate("/")} aria-label="Virya home">
           <img className="brand-logo" src="/viryaprivate.png" alt="" />
           <span>
             <strong>Virya</strong>
@@ -26,9 +26,9 @@ export default function Header({
         <nav className="primary-menu" aria-label="Primary navigation">
           {menuGroups.map((group) => (
             <button
-              className={page === group.id ? "active" : ""}
+              className={pathname === group.path ? "active" : ""}
               type="button"
-              onClick={() => navigate(group.id)}
+              onClick={() => navigate(group.path)}
               key={group.title}
             >
               {group.title}
@@ -37,7 +37,7 @@ export default function Header({
         </nav>
 
         <div className="nav-actions">
-          <button className="nav-apply" type="button" onClick={() => navigate("admissions")}>Apply</button>
+          <button className="nav-apply" type="button" onClick={() => navigate("/apply")}>Apply</button>
           <button
             className={`nav-search ${searchOpen ? "active" : ""}`}
             type="button"
@@ -93,7 +93,7 @@ export default function Header({
           <nav aria-label="Mobile primary navigation">
             <strong>Explore Virya</strong>
             {menuGroups.map((group) => (
-              <button type="button" onClick={() => navigate(group.id)} key={group.title}>
+              <button type="button" onClick={() => navigate(group.path)} key={group.title}>
                 {group.title}
               </button>
             ))}

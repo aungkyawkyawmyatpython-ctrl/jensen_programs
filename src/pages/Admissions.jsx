@@ -185,7 +185,7 @@ export default function Admissions({
           <Reveal className="admissions-section-heading" direction="left">
             <p className="eyebrow">Admissions FAQ</p>
             <h2 id="admissions-faq-title">Helpful Starting Points</h2>
-            <button type="button" onClick={() => navigate("academics")}>
+            <button type="button" onClick={() => navigate("/academics")}>
               Explore Academics <span aria-hidden="true">→</span>
             </button>
           </Reveal>

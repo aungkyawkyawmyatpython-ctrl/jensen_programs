@@ -91,7 +91,7 @@ export default function News({ navigate }) {
               activities and experiences.
             </p>
           </div>
-          <button className="button gold" type="button" onClick={() => navigate("student-life")}>
+          <button className="button gold" type="button" onClick={() => navigate("/student-life")}>
             Explore Student Life <span aria-hidden="true">&rarr;</span>
           </button>
         </Reveal>

@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  min-height: clamp(600px, 78svh, 800px);
+  min-height: clamp(620px, 80svh, 860px);
   padding: 0;
   background: var(--navy-900);
   color: var(--white);
@@ -34,8 +34,8 @@
 .hero-shade {
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(3, 18, 37, 0.96) 0%, rgba(6, 27, 54, 0.84) 48%, rgba(6, 27, 54, 0.32) 100%),
-    linear-gradient(0deg, rgba(3, 18, 37, 0.36), rgba(3, 18, 37, 0.04));
+    linear-gradient(90deg, rgba(3, 18, 37, 0.97) 0%, rgba(6, 27, 54, 0.9) 34%, rgba(6, 27, 54, 0.7) 58%, rgba(6, 27, 54, 0.22) 100%),
+    linear-gradient(0deg, rgba(3, 18, 37, 0.38), rgba(3, 18, 37, 0.04));
 }
 
 .hero .eyebrow {
@@ -90,6 +90,55 @@
   color: rgba(255, 255, 255, 0.82);
   font-size: 1.18rem;
   line-height: 1.7;
+}
+
+@media (min-width: 761px) {
+  .hero-school-mark {
+    display: none;
+  }
+
+  .hero-backdrop {
+    object-position: center 46%;
+  }
+
+  .hero-inner {
+    width: min(100%, 1180px);
+    margin-inline: auto;
+    padding: clamp(56px, 7vh, 88px) clamp(28px, 4vw, 48px);
+  }
+
+  .hero-copy {
+    width: min(54vw, 790px);
+    max-width: 100%;
+  }
+
+  .hero-copy h1 {
+    max-width: 790px;
+    margin-bottom: 20px;
+    font-size: clamp(3.75rem, 4.7vw, 5.1rem);
+    line-height: 0.96;
+    text-wrap: balance;
+  }
+
+  .hero-copy .eyebrow {
+    max-width: 640px;
+    margin-bottom: 14px;
+  }
+
+  .hero-copy .hero-introduction {
+    max-width: 640px;
+    margin-bottom: 28px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .hero-copy {
+    width: min(72%, 680px);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.45rem, 5.8vw, 4.05rem);
+  }
 }
 
 @media (max-width: 760px) {

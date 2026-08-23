@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -11,6 +12,8 @@ import StudentLife from "./pages/StudentLife";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -19,43 +22,49 @@ const SCHOOL_IMAGES = {
   campus: "/DSC00648.jpg",
   frontView: "/viryaprivateschool_frontview.jpg",
 
-  story: "/IMG_1105.JPG",
+  story: "/student_group.jpg",
   community: "/IMG_1111.JPG",
 };
 
 const menuGroups = [
   {
     id: "academics",
+    path: "/academics",
     title: "Academics",
     links: ["Kindergarten", "Primary School", "Middle School"],
     image: SCHOOL_IMAGES.academics,
   },
   {
     id: "admissions",
+    path: "/admissions",
     title: "Admissions",
     links: ["How to Apply", "Programs Offered", "Tuition & Fees", "Admissions FAQ"],
     image: SCHOOL_IMAGES.admissions,
   },
   {
     id: "student-life",
+    path: "/student-life",
     title: "Student Life",
     links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
     image: SCHOOL_IMAGES.studentLife,
   },
   {
     id: "gallery",
+    path: "/gallery",
     title: "Gallery",
     links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
     image: SCHOOL_IMAGES.studentLife,
   },
   {
     id: "faculty",
+    path: "/faculty",
     title: "Faculty",
     links: ["Faculty Directory", "Founders", "Administration", "Teachers"],
     image: SCHOOL_IMAGES.community,
   },
   {
     id: "about",
+    path: "/about",
     title: "About",
     links: ["Mission", "Leadership", "Campus", "Careers"],
     image: SCHOOL_IMAGES.community,
@@ -81,11 +90,36 @@ const programStages = [
   ["middle", "Middle School", "Grades 6–9", "Grades 6 through 9 make up the Middle School stage.", "Middle School"],
 ];
 
-const stats = [
-  ["14", "Average class size"],
-  ["8:1", "Student-advisor ratio"],
-  ["24", "Clubs and studios"],
-  ["96%", "Families recommend Virya"],
+const kindergartenFocusAreas = [
+  "Early Literacy",
+  "Number Sense",
+  "Friendship",
+  "Discovery",
+  "Creative Expression",
+];
+
+const viryaStrengths = [
+  {
+    label: "Academics",
+    title: "Kindergarten to Grade 9",
+    text: "VIRYA provides a continuous learning pathway from Kindergarten through Grade 9.",
+    target: "/academics",
+    action: "Explore Academics",
+  },
+  {
+    label: "Core Values",
+    title: "Character Matters",
+    text: "Empathy, resilience, respect, creativity, responsibility, and citizenship guide learning, relationships, and everyday school life.",
+    target: "/about",
+    action: "Our Values",
+  },
+  {
+    label: "Student Life",
+    title: "Learning Beyond the Classroom",
+    text: "Science Fair, debate, football competition, visits to Yangon, and Martyrs' Day activities extend learning beyond the classroom.",
+    target: "/student-life",
+    action: "Explore Student Life",
+  },
 ];
 
 const facilities = [
@@ -161,13 +195,19 @@ const pageDetails = {
     title: "Academics",
     headline: "Programs built for confident learners.",
     text: "Explore Virya's Kindergarten through Grade 9 pathways, specialist teachers, enrichment blocks, and learning support.",
-    actions: [["admissions", "Ask About Placement", "button gold"]],
+    actions: [["/admissions", "Ask About Placement", "button gold"]],
   },
   admissions: {
     title: "Admissions",
     headline: "Admissions",
     text: "Explore programs from Kindergarten through Grade 9 and start an admissions inquiry with VIRYA.",
-    actions: [["admissions-form", "Apply Now", "button gold"]],
+    actions: [["/apply", "Apply Now", "button gold"]],
+  },
+  apply: {
+    title: "Apply",
+    headline: "Start an admissions inquiry.",
+    text: "Share a few details and our admissions team will follow up with the right next step for your family.",
+    actions: [],
   },
   "student-life": {
     title: "Student Life",
@@ -185,9 +225,9 @@ const pageDetails = {
     title: "About Virya",
     headline: "A private school with a public purpose.",
     text: "Virya is a close, ambitious learning community organized around scholarship, character, wellbeing, and service.",
-    actions: [["community", "View School Numbers", "button gold"]],
+    actions: [["#core-values", "Explore Our Values", "button gold"]],
   },
-  visit: {
+  contact: {
     title: "Contact & Visit",
     headline: "Contact VIRYA",
     text: "Contact VIRYA Private School with questions, admissions inquiries, or to learn more about visiting the campus.",
@@ -209,58 +249,52 @@ const pageDetails = {
     title: "Virya by the Numbers",
     headline: "Small enough to know every child.",
     text: "Families choose Virya for close advising, strong academics, and a culture that feels personal.",
-    actions: [["about", "Our Mission", "button gold"]],
+    actions: [["/about", "Our Mission", "button gold"]],
   },
   calendar: {
     title: "School Calendar",
     headline: "Plan the weeks ahead.",
     text: "Open mornings, performances, conferences, exhibitions, holidays, and admissions milestones live here.",
-    actions: [["visit", "Plan a Visit", "button gold"]],
+    actions: [["/contact", "Plan a Visit", "button gold"]],
   },
   portal: {
     title: "Portal",
     headline: "Family and student resources.",
     text: "A future home for forms, messages, payments, and student schedules.",
-    actions: [["calendar", "View Calendar", "button gold"]],
+    actions: [["/calendar", "View Calendar", "button gold"]],
   },
   directory: {
     title: "Directory",
     headline: "Find the right office.",
     text: "Admissions, student support, school leadership, faculty teams, and operations contacts.",
-    actions: [["admissions", "Admissions Office", "button gold"]],
+    actions: [["/admissions", "Admissions Office", "button gold"]],
   },
 };
 
 const utilityLinks = [
-  ["calendar", "Calendar"],
-  ["portal", "Parent Portal"],
-  ["directory", "Directory"],
-  ["news", "News"],
+  ["/calendar", "Calendar"],
+  ["/portal", "Parent Portal"],
+  ["/directory", "Directory"],
+  ["/news", "News"],
 ];
 
 const pageHighlights = {
   about: [
-    ["Mission", "A private school with a public purpose", "Virya is built around scholarship, character, wellbeing, and service.", "community", "View Numbers"],
-    ["Leadership", "People who guide the culture", "Faculty and school leaders work closely with families and students.", "directory", "Find Offices"],
-    ["Campus", "A learning community with room to grow", "Classrooms, labs, arts spaces, and advisory areas support the full school day.", "visit", "Visit Campus"],
+    ["Core Values", "Character guides everyday school life", "VIRYA values shape student character, relationships, learning, and responsibility.", "/about", "Explore Our Values"],
+    ["Leadership", "People who guide the culture", "Faculty and school leaders work closely with families and students.", "/directory", "Find Offices"],
+    ["Campus", "A learning community with room to grow", "Classrooms, labs, arts spaces, and advisory areas support the full school day.", "/contact", "Visit Campus"],
   ],
-  visit: events.map(([date, title, text]) => [date, title, text, "admissions", "Request Visit"]),
-  news: news.map(([tag, title]) => [tag, title, "Read more from classrooms, arts, service, and student life.", "news", "Read More"]),
-  community: [
-    ["14", "Average class size", "Small groups help teachers know every learner well.", "about", "Our Mission"],
-    ["8:1", "Student-advisor ratio", "Close advising supports confidence, planning, and wellbeing.", "student-life", "Student Life"],
-    ["96%", "Families recommend Virya", "Families value the balance of ambition, care, and belonging.", "admissions", "Talk to Us"],
-  ],
-  calendar: events.map(([date, title, text]) => [date, title, text, "visit", "Plan Around It"]),
+  news: news.map(([tag, title]) => [tag, title, "Read more from classrooms, arts, service, and student life.", "/news", "Read More"]),
+  calendar: events.map(([date, title, text]) => [date, title, text, "/contact", "Plan Around It"]),
   portal: [
-    ["Forms", "Family documents", "Admissions records, permission forms, and school documents are organized here.", "directory", "Contact Office"],
-    ["Messages", "School updates", "Families can keep up with school reminders, events, and community notes.", "news", "Latest News"],
-    ["Schedules", "Dates and routines", "Calendar milestones, performances, conferences, and admissions dates stay easy to find.", "calendar", "Open Calendar"],
+    ["Forms", "Family documents", "Admissions records, permission forms, and school documents are organized here.", "/directory", "Contact Office"],
+    ["Messages", "School updates", "Families can keep up with school reminders, events, and community notes.", "/news", "Latest News"],
+    ["Schedules", "Dates and routines", "Calendar milestones, performances, conferences, and admissions dates stay easy to find.", "/calendar", "Open Calendar"],
   ],
   directory: [
-    ["Admissions", "Enrollment questions", "For applications, visits, placement, tuition, and start dates.", "admissions", "Apply"],
-    ["Student Support", "Wellbeing and learning support", "For advisory, counseling, learning needs, and family partnership.", "student-life", "Student Life"],
-    ["Operations", "Campus and records", "For documents, schedules, general office help, and school logistics.", "portal", "Family Portal"],
+    ["Admissions", "Enrollment questions", "For applications, visits, placement, tuition, and start dates.", "/admissions", "Apply"],
+    ["Student Support", "Wellbeing and learning support", "For advisory, counseling, learning needs, and family partnership.", "/student-life", "Student Life"],
+    ["Operations", "Campus and records", "For documents, schedules, general office help, and school logistics.", "/portal", "Family Portal"],
   ],
 };
 
@@ -270,46 +304,47 @@ const searchItems = [
   ...menuGroups.map((group) => ({
     title: group.title,
     text: group.links.join(", "),
-    target: group.id,
+    target: group.path,
     type: "Section",
   })),
   ...programs.map(([title, range, text]) => ({
     title,
     text: `${range}. ${text}`,
-    target: "academics",
+    target: "/academics",
     type: "Program",
   })),
   ...events.map(([date, title, text]) => ({
     title,
     text: `${date}. ${text}`,
-    target: "calendar",
+    target: "/calendar",
     type: "Event",
   })),
   ...missionVision.map(([title, text]) => ({
     title,
     text,
-    target: "about",
+    target: "/about",
     type: "About",
   })),
   {
     title: "Our Story",
     text: "Virya International Academy began in 2021 and Virya Private School followed in 2023.",
-    target: "about",
+    target: "/about",
     type: "About",
   },
   ...news.map(([tag, title]) => ({
     title,
     text: tag,
-    target: "news",
+    target: "/news",
     type: "News",
   })),
-  { title: "Apply", text: "Start an admissions inquiry", target: "admissions", type: "Action" },
-  { title: "Visit Virya", text: "Open mornings, tours, and student shadow days", target: "visit", type: "Action" },
-  { title: "Parent Portal", text: "Forms, schedules, messages, and family resources", target: "portal", type: "Resource" },
+  { title: "Apply", text: "Start an admissions inquiry", target: "/apply", type: "Action" },
+  { title: "Visit Virya", text: "Open mornings, tours, and student shadow days", target: "/contact", type: "Action" },
+  { title: "Parent Portal", text: "Forms, schedules, messages, and family resources", target: "/portal", type: "Resource" },
 ];
 
 function App() {
-  const [page, setPage] = useState("home");
+  const location = useLocation();
+  const routerNavigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -321,13 +356,18 @@ function App() {
   });
   const [submissionStatus, setSubmissionStatus] = useState("idle");
 
-  const navigate = (nextPage) => {
-    setPage(nextPage);
+  const navigate = (path) => {
     setSearchOpen(false);
     setSearchTerm("");
     setMobileMenuOpen(false);
     setHeaderHidden(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    routerNavigate(path);
   };
 
   useEffect(() => {
@@ -393,7 +433,7 @@ function App() {
         headerHidden={headerHidden}
         navigate={navigate}
         menuGroups={menuGroups}
-        page={page}
+        pathname={location.pathname}
         searchOpen={searchOpen}
         setSearchOpen={setSearchOpen}
         mobileMenuOpen={mobileMenuOpen}
@@ -404,36 +444,45 @@ function App() {
         utilityLinks={utilityLinks}
       />
 
-      {page === "home" && (
-        <>
-          <Home navigate={navigate} />
-          <Notice />
-          <MissionVision />
-          <OurStory />
-          <Programs />
-          <Why navigate={navigate} />
-          <Campus navigate={navigate} showHomePreview />
-          <StoryStrip navigate={navigate} />
-          <NewsEvents />
-          <AdmissionsForm
-            application={application}
-            submissionStatus={submissionStatus}
-            updateApplication={updateApplication}
-            submitApplication={submitApplication}
-          />
-        </>
-      )}
-
-      {page !== "home" && (
-        <InteriorPage
-          page={page}
-          navigate={navigate}
-          application={application}
-          submissionStatus={submissionStatus}
-          updateApplication={updateApplication}
-          submitApplication={submitApplication}
+      <ScrollToTop />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home navigate={navigate} />
+              <Notice />
+              <MissionVision />
+              <OurStory />
+              <Programs />
+              <ViryaStrengths navigate={navigate} />
+              <Campus navigate={navigate} showHomePreview />
+              <StoryStrip navigate={navigate} />
+              <NewsEvents />
+              <AdmissionsForm
+                application={application}
+                submissionStatus={submissionStatus}
+                updateApplication={updateApplication}
+                submitApplication={submitApplication}
+              />
+            </>
+          }
         />
-      )}
+        <Route path="/about" element={<InteriorPage page="about" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/academics" element={<InteriorPage page="academics" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/faculty" element={<InteriorPage page="faculty" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/student-life" element={<InteriorPage page="student-life" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/admissions" element={<InteriorPage page="admissions" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/apply" element={<InteriorPage page="apply" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/news" element={<InteriorPage page="news" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/gallery" element={<InteriorPage page="gallery" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/contact" element={<InteriorPage page="contact" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/calendar" element={<InteriorPage page="calendar" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/portal" element={<InteriorPage page="portal" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/directory" element={<InteriorPage page="directory" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/community" element={<InteriorPage page="community" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="*" element={<NotFound navigate={navigate} />} />
+      </Routes>
 
       <Footer navigate={navigate} contactDetails={contactDetails} />
     </main>
@@ -490,19 +539,26 @@ function JourneyTimeline() {
 }
 
 function OurStory({ aboutPage = false, showTimeline = true }) {
+  const storyImage = aboutPage ? "/studnet_group_pic.jpg" : SCHOOL_IMAGES.story;
+  const storyImageAlt = aboutPage
+    ? "VIRYA students and teachers together"
+    : "VIRYA students together at school";
+
   return (
-    <section className="section our-story" id="story">
-      <Reveal className="story-media" direction="left">
-        <SafeImage src={SCHOOL_IMAGES.story} alt="Virya school community" />
-      </Reveal>
-      <Reveal className="story-content" direction="right">
-        <p className="eyebrow">{aboutPage ? "About VIRYA" : "Our Story"}</p>
-        <h2>A small school with a future-focused mission.</h2>
-        {storyParagraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-        {showTimeline && <JourneyTimeline />}
-      </Reveal>
+    <section className="section our-story-section" id="story">
+      <div className="our-story">
+        <Reveal className="story-media" direction="left">
+          <SafeImage src={storyImage} alt={storyImageAlt} />
+        </Reveal>
+        <Reveal className="story-content" direction="right">
+          <p className="eyebrow">{aboutPage ? "About VIRYA" : "Our Story"}</p>
+          <h2>A small school with a future-focused mission.</h2>
+          {storyParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          {showTimeline && <JourneyTimeline />}
+        </Reveal>
+      </div>
     </section>
   );
 }
@@ -543,29 +599,47 @@ function Programs() {
                 aria-labelledby={"academic-stage-" + id}
                 key={id}
               >
-                <Reveal className="academic-stage-header">
-                  <div>
-                    <h3 id={"academic-stage-" + id}>{stageTitle}</h3>
-                    {range && <span>{range}</span>}
-                  </div>
-                  <p>{introduction}</p>
-                </Reveal>
-
-                <div className="academic-grade-grid">
-                  {stagePrograms.map(([title, , text], index) => (
-                    <Reveal delay={stageIndex * 35 + index * 45} key={title}>
-                      <article className="academic-grade-card">
-                        <div className="academic-grade-title">
-                          <h4>{title}</h4>
-                          <span aria-hidden="true">
-                            {title === "Kindergarten" ? "K" : title.replace("Grade ", "")}
-                          </span>
-                        </div>
-                        <p>{text}</p>
-                      </article>
+                {id === "kindergarten" ? (
+                  <Reveal className="kindergarten-feature">
+                    <div className="kindergarten-feature-heading">
+                      <p className="kindergarten-stage-label">Foundation Stage</p>
+                      <h3 id={"academic-stage-" + id}>{stageTitle}</h3>
+                      <p className="kindergarten-introduction">{introduction}</p>
+                    </div>
+                    <article className="kindergarten-program-panel">
+                      <p className="kindergarten-program-description">{stagePrograms[0][2]}</p>
+                      <ul className="kindergarten-focus-list" aria-label="Kindergarten learning focus">
+                        {kindergartenFocusAreas.map((focus) => (
+                          <li key={focus}>{focus}</li>
+                        ))}
+                      </ul>
+                    </article>
+                  </Reveal>
+                ) : (
+                  <>
+                    <Reveal className="academic-stage-header">
+                      <div>
+                        <h3 id={"academic-stage-" + id}>{stageTitle}</h3>
+                        {range && <span>{range}</span>}
+                      </div>
+                      <p>{introduction}</p>
                     </Reveal>
-                  ))}
-                </div>
+
+                    <div className="academic-grade-grid">
+                      {stagePrograms.map(([title, , text], index) => (
+                        <Reveal delay={stageIndex * 35 + index * 45} key={title}>
+                          <article className="academic-grade-card">
+                            <div className="academic-grade-title">
+                              <h4>{title}</h4>
+                              <span aria-hidden="true">{title.replace("Grade ", "")}</span>
+                            </div>
+                            <p>{text}</p>
+                          </article>
+                        </Reveal>
+                      ))}
+                    </div>
+                  </>
+                )}
               </section>
             );
           })}
@@ -575,35 +649,30 @@ function Programs() {
   );
 }
 
-function Why({ navigate }) {
+function ViryaStrengths({ navigate }) {
   return (
-    <section className="section why" id="about">
-      <Reveal direction="left">
-        <p className="eyebrow">Why Choose Virya</p>
-        <h2>Ambition, support, and belonging in one school day.</h2>
-        <p>
-          Students learn through direct instruction, guided inquiry, advisory,
-          performance, service, and reflection. It feels rigorous because it is personal.
-        </p>
-        <button type="button" onClick={() => navigate("community")}>Virya by the numbers</button>
+    <section className="section virya-strengths" id="community" aria-labelledby="virya-strengths-title">
+      <Reveal className="section-heading">
+        <p className="eyebrow">Explore</p>
+        <h2 id="virya-strengths-title">What Shapes the VIRYA Experience</h2>
       </Reveal>
-      <StatsGrid />
-    </section>
-  );
-}
 
-function StatsGrid() {
-  return (
-    <div className="stat-grid" id="community">
-      {stats.map(([value, label], index) => (
-        <Reveal delay={index * 70} key={label}>
-          <article className="stat-card">
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </article>
-        </Reveal>
-      ))}
-    </div>
+      <div className="virya-strength-grid">
+        {viryaStrengths.map(({ label, title, text, target, action }, index) => (
+          <Reveal delay={index * 70} key={label}>
+            <article className="virya-strength-card">
+              <span className="virya-strength-marker" aria-hidden="true" />
+              <p className="virya-strength-label">{label}</p>
+              <h3>{title}</h3>
+              <p className="virya-strength-copy">{text}</p>
+              <button type="button" onClick={() => navigate(target)}>
+                {action} <span aria-hidden="true">→</span>
+              </button>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -645,7 +714,7 @@ function Campus({ aboutPage = false, showHomePreview = false, navigate }) {
           </div>
         )}
         {showHomePreview && (
-          <button className="campus-preview" type="button" onClick={() => navigate("about")}>
+          <button className="campus-preview" type="button" onClick={() => navigate("/about")}>
             <SafeImage
               src={SCHOOL_IMAGES.frontView}
               alt="Front view of VIRYA Private School campus"
@@ -673,7 +742,7 @@ function StoryStrip({ navigate }) {
             on stage, and ask better questions in every class.
           </p>
         </div>
-        <button className="button navy" type="button" onClick={() => navigate("news")}>Read Stories</button>
+        <button className="button navy" type="button" onClick={() => navigate("/news")}>Read Stories</button>
       </section>
     </Reveal>
   );
@@ -717,7 +786,92 @@ function NewsEvents() {
   );
 }
 
-function AdmissionsForm({ application, submissionStatus, updateApplication, submitApplication }) {
+function InquiryForm({ application, submissionStatus, updateApplication, submitApplication }) {
+  return (
+    <form className="inquiry-form" aria-label="Admissions inquiry" onSubmit={submitApplication}>
+      <label>
+        Parent name
+        <input
+          type="text"
+          name="parentName"
+          placeholder="Your name"
+          value={application.parentName}
+          onChange={updateApplication}
+          autoComplete="name"
+          maxLength={120}
+          pattern="[^<>]{1,120}"
+          title="Please do not include angle brackets."
+          required
+        />
+      </label>
+      <label>
+        Email
+        <input
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          value={application.email}
+          onChange={updateApplication}
+          autoComplete="email"
+          inputMode="email"
+          maxLength={160}
+          required
+        />
+      </label>
+      <label>
+        Student grade
+        <select name="studentGrade" value={application.studentGrade} onChange={updateApplication} required>
+          <option value="" disabled>Select a grade</option>
+          {gradeOptions.map((grade) => (
+            <option key={grade}>{grade}</option>
+          ))}
+        </select>
+      </label>
+      <button type="submit" disabled={submissionStatus === "sending"}>
+        {submissionStatus === "sending" ? "Sending..." : "Request Information"}
+      </button>
+      <p className={`form-status ${submissionStatus}`} aria-live="polite">
+        {submissionStatus === "success" && "Thank you. Your application inquiry has been saved."}
+        {submissionStatus === "invalid" && "Please enter your name, email, and a valid grade before sending."}
+        {submissionStatus === "error" && "Something went wrong. Please try again or contact admissions."}
+      </p>
+    </form>
+  );
+}
+
+function AdmissionsForm({
+  application,
+  submissionStatus,
+  updateApplication,
+  submitApplication,
+  unifiedContent,
+}) {
+  const form = (
+    <InquiryForm
+      application={application}
+      submissionStatus={submissionStatus}
+      updateApplication={updateApplication}
+      submitApplication={submitApplication}
+    />
+  );
+
+  if (unifiedContent) {
+    return (
+      <section className="apply-inquiry" id="admissions-inquiry" aria-labelledby="apply-inquiry-title">
+        <div className="apply-inquiry-inner">
+          <Reveal className="apply-inquiry-copy" direction="left">
+            <p className="eyebrow">{unifiedContent.title}</p>
+            <h1 id="apply-inquiry-title">{unifiedContent.headline}</h1>
+            <p>{unifiedContent.text}</p>
+          </Reveal>
+          <Reveal className="apply-inquiry-form" direction="right">
+            {form}
+          </Reveal>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="section admissions" id="admissions-inquiry">
       <Reveal className="admissions-copy" direction="left">
@@ -728,56 +882,7 @@ function AdmissionsForm({ application, submissionStatus, updateApplication, subm
           right next step for your family.
         </p>
       </Reveal>
-      <Reveal direction="right">
-        <form className="inquiry-form" aria-label="Admissions inquiry" onSubmit={submitApplication}>
-          <label>
-            Parent name
-            <input
-              type="text"
-              name="parentName"
-              placeholder="Your name"
-              value={application.parentName}
-              onChange={updateApplication}
-              autoComplete="name"
-              maxLength={120}
-              pattern="[^<>]{1,120}"
-              title="Please do not include angle brackets."
-              required
-            />
-          </label>
-          <label>
-            Email
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={application.email}
-              onChange={updateApplication}
-              autoComplete="email"
-              inputMode="email"
-              maxLength={160}
-              required
-            />
-          </label>
-          <label>
-            Student grade
-            <select name="studentGrade" value={application.studentGrade} onChange={updateApplication} required>
-              <option value="" disabled>Select a grade</option>
-              {gradeOptions.map((grade) => (
-                <option key={grade}>{grade}</option>
-              ))}
-            </select>
-          </label>
-          <button type="submit" disabled={submissionStatus === "sending"}>
-            {submissionStatus === "sending" ? "Sending..." : "Request Information"}
-          </button>
-          <p className={`form-status ${submissionStatus}`} aria-live="polite">
-            {submissionStatus === "success" && "Thank you. Your application inquiry has been saved."}
-            {submissionStatus === "invalid" && "Please enter your name, email, and a valid grade before sending."}
-            {submissionStatus === "error" && "Something went wrong. Please try again or contact admissions."}
-          </p>
-        </form>
-      </Reveal>
+      <Reveal direction="right">{form}</Reveal>
     </section>
   );
 }
@@ -799,33 +904,44 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
     title: "Virya",
     headline: "Explore our school.",
     text: "Choose a section from the menu to continue.",
-    actions: [["home", "Return Home", "button gold"]],
+    actions: [["/", "Return Home", "button gold"]],
   };
 
-  const focusAdmissionsForm = () => {
-    const formSection = document.getElementById("admissions-inquiry");
-    if (!formSection) return;
-    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => {
-      formSection.querySelector("input")?.focus({ preventScroll: true });
-    }, 450);
-  };
+  if (page === "apply") {
+    return (
+      <AdmissionsForm
+        application={application}
+        submissionStatus={submissionStatus}
+        updateApplication={updateApplication}
+        submitApplication={submitApplication}
+        unifiedContent={content}
+      />
+    );
+  }
 
   return (
     <>
       <section className="interior-hero">
-        <Reveal direction="left">
-          <p className="eyebrow">{content.title}</p>
-          <h1>{content.headline}</h1>
-          <p>{content.text}</p>
-          <div className="hero-actions">
-            {content.actions.map(([target, label, className]) => (
-              <button className={className} type="button" onClick={() => target === "admissions-form" ? focusAdmissionsForm() : navigate(target)} key={`${page}-${label}`}>
-                {label}
-              </button>
-            ))}
-          </div>
-        </Reveal>
+        <div className="interior-hero-inner">
+          <Reveal className={page === "academics" ? "academics-hero-content" : ""} direction="left">
+            <p className="eyebrow">{content.title}</p>
+            <h1>{content.headline}</h1>
+            <p>{content.text}</p>
+            <div className="hero-actions">
+              {content.actions.map(([target, label, className]) =>
+                target.startsWith("#") ? (
+                  <a className={className} href={target} key={`${page}-${label}`}>
+                    {label}
+                  </a>
+                ) : (
+                  <button className={className} type="button" onClick={() => navigate(target)} key={`${page}-${label}`}>
+                    {label}
+                  </button>
+                ),
+              )}
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {page === "about" ? (
@@ -834,7 +950,7 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <>
           {page === "gallery" ? (
             <Gallery />
-          ) : page === "visit" ? (
+          ) : page === "contact" ? (
             <Contact navigate={navigate} contactDetails={contactDetails} />
           ) : page === "news" ? (
             <News navigate={navigate} />
@@ -846,7 +962,7 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             <Admissions
               navigate={navigate}
               contactDetails={contactDetails}
-              onApply={focusAdmissionsForm}
+              onApply={() => navigate("/apply")}
               applicationForm={
                 <AdmissionsForm
                   application={application}
@@ -858,6 +974,8 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             />
           ) : page === "academics" ? (
             <Programs />
+          ) : page === "community" ? (
+            <ViryaStrengths navigate={navigate} />
           ) : (
             <InteriorHighlights page={page} navigate={navigate} />
           )}

@@ -125,7 +125,7 @@ export default function AboutInstitutionalSections({ navigate }) {
               <button
                 className="principal-faculty-link"
                 type="button"
-                onClick={() => navigate("faculty")}
+                onClick={() => navigate("/faculty")}
               >
                 Meet Our Faculty <span aria-hidden="true">→</span>
               </button>

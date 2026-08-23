@@ -27,25 +27,25 @@ export default function Footer({ navigate, contactDetails }) {
         <Reveal delay={80}>
           <nav aria-label="Footer academics">
             <strong>Academics</strong>
-            <button type="button" onClick={() => navigate("academics")}>Kindergarten</button>
-            <button type="button" onClick={() => navigate("academics")}>Primary School</button>
-            <button type="button" onClick={() => navigate("academics")}>Middle School</button>
+            <button type="button" onClick={() => navigate("/academics")}>Kindergarten</button>
+            <button type="button" onClick={() => navigate("/academics")}>Primary School</button>
+            <button type="button" onClick={() => navigate("/academics")}>Middle School</button>
           </nav>
         </Reveal>
         <Reveal delay={160}>
           <nav aria-label="Footer admissions">
             <strong>Admissions</strong>
-            <button type="button" onClick={() => navigate("admissions")}>Apply</button>
-            <button type="button" onClick={() => navigate("visit")}>Visit</button>
-            <button type="button" onClick={() => navigate("admissions")}>Tuition & Aid</button>
+            <button type="button" onClick={() => navigate("/apply")}>Apply</button>
+            <button type="button" onClick={() => navigate("/contact")}>Visit</button>
+            <button type="button" onClick={() => navigate("/admissions")}>Tuition & Aid</button>
           </nav>
         </Reveal>
         <Reveal delay={240}>
           <nav aria-label="Footer community">
             <strong>Community</strong>
-            <button type="button" onClick={() => navigate("news")}>News</button>
-            <button type="button" onClick={() => navigate("student-life")}>Student Life</button>
-            <button type="button" onClick={() => navigate("home")}>Back to Top</button>
+            <button type="button" onClick={() => navigate("/news")}>News</button>
+            <button type="button" onClick={() => navigate("/student-life")}>Student Life</button>
+            <button type="button" onClick={() => navigate("/")}>Back to Top</button>
           </nav>
         </Reveal>
       </div>

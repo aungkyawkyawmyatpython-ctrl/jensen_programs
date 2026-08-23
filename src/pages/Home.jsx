@@ -37,14 +37,14 @@ export default function Home({ navigate }) {
             <button
               className="button gold"
               type="button"
-              onClick={() => navigate("admissions")}
+              onClick={() => navigate("/apply")}
             >
               Start Your Application
             </button>
             <button
               className="button outline"
               type="button"
-              onClick={() => navigate("about")}
+              onClick={() => navigate("/about")}
             >
               Discover Our School
             </button>

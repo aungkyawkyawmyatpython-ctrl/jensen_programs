@@ -6,6 +6,9 @@
   --blue-500: #2878c8;
   --teal-600: #087f8c;
   --sage-100: #e8f3ed;
+  --teal-50: #f4f8f6;
+  --blue-gray-50: #f3f6fa;
+  --cream-50: #fffaf0;
   --coral-500: #df6b57;
   --gold: #f2b84b;
   --paper: #f6f8fb;
@@ -428,7 +431,7 @@ h3 {
 }
 
 .section,
-.our-story,
+.our-story-section,
 .campus,
 .story-strip,
 .footer-cta {
@@ -444,7 +447,7 @@ h3 {
 .mission-vision {
   background:
     linear-gradient(120deg, rgba(6, 27, 54, 0.96), rgba(8, 38, 77, 0.88)),
-    url("/DSC00001.jpg") center/cover;
+    url("/ceremony.jpg") center/cover;
   color: var(--white);
 }
 
@@ -499,11 +502,11 @@ h3 {
 }
 
 .program-journey {
-  background: var(--white);
+  background: var(--blue-gray-50);
 }
 
 .program-journey-inner {
-  width: min(100%, 1280px);
+  width: min(100%, 1180px);
   margin: 0 auto;
 }
 
@@ -534,17 +537,88 @@ h3 {
 
 .academic-stage-kindergarten {
   --stage-accent: #b17608;
-  background: #fffaf0;
+  background: var(--cream-50);
+}
+
+.kindergarten-feature {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(26px, 5vw, 64px);
+  align-items: center;
+}
+
+.kindergarten-feature-heading {
+  padding-right: clamp(12px, 2vw, 24px);
+  border-right: 2px solid var(--stage-accent);
+}
+
+.kindergarten-stage-label {
+  margin: 0 0 10px;
+  color: var(--stage-accent);
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kindergarten-feature h3 {
+  margin: 0;
+  color: var(--navy-950);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+}
+
+.kindergarten-introduction {
+  max-width: 25rem;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.kindergarten-program-panel {
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--stage-accent);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 8px 20px rgba(3, 18, 37, 0.05);
+}
+
+.kindergarten-program-description {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--navy-900);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.kindergarten-focus-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kindergarten-focus-list li {
+  padding: 6px 10px;
+  border: 1px solid rgba(177, 118, 8, 0.24);
+  border-radius: 999px;
+  background: rgba(242, 184, 75, 0.1);
+  color: var(--navy-800);
+  font-size: 0.74rem;
+  font-weight: 850;
 }
 
 .academic-stage-primary {
   --stage-accent: var(--teal-600);
-  background: #f4f8f6;
+  background: var(--teal-50);
 }
 
 .academic-stage-middle {
   --stage-accent: var(--navy-700);
-  background: #f3f6fa;
+  background: var(--blue-gray-50);
 }
 
 .academic-stage-header {
@@ -588,10 +662,6 @@ h3 {
   align-items: stretch;
 }
 
-.academic-stage-kindergarten .academic-grade-grid {
-  grid-template-columns: 1fr;
-}
-
 .academic-grade-grid > .reveal {
   height: 100%;
 }
@@ -604,13 +674,6 @@ h3 {
   border-radius: var(--radius);
   background: var(--white);
   box-shadow: 0 8px 20px rgba(3, 18, 37, 0.05);
-}
-
-.academic-stage-kindergarten .academic-grade-card {
-  display: grid;
-  grid-template-columns: minmax(170px, 0.38fr) minmax(0, 1fr);
-  gap: clamp(20px, 4vw, 52px);
-  align-items: center;
 }
 
 .academic-grade-title {
@@ -639,10 +702,6 @@ h3 {
   font-weight: 950;
 }
 
-.academic-stage-kindergarten .academic-grade-title span {
-  color: var(--navy-950);
-}
-
 .academic-grade-card > p {
   margin: 14px 0 0;
   color: var(--muted);
@@ -650,16 +709,17 @@ h3 {
   line-height: 1.58;
 }
 
-.academic-stage-kindergarten .academic-grade-card > p {
-  margin: 0;
+.our-story-section {
+  background: var(--white);
 }
 
 .our-story {
   display: grid;
+  width: min(100%, 1180px);
   grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(30px, 6vw, 72px);
   align-items: center;
-  background: var(--white);
+  margin: 0 auto;
 }
 
 .story-media img {
@@ -716,40 +776,88 @@ h3 {
   line-height: 1.48;
 }
 
-.why {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-  gap: clamp(30px, 6vw, 74px);
-  align-items: center;
-  background: #eef3fa;
+.virya-strengths {
+  background: var(--blue-gray-50);
 }
 
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
+.virya-strengths .section-heading {
+  margin-bottom: clamp(28px, 4vw, 42px);
 }
 
-.stat-card {
-  min-height: 170px;
-  padding: 28px;
+.virya-strength-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  align-items: stretch;
+}
+
+.virya-strength-grid > .reveal {
+  height: 100%;
+}
+
+.virya-strength-card {
+  --strength-accent: var(--navy-700);
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 32px);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--strength-accent);
   border-radius: var(--radius);
-  background: var(--navy-800);
-  color: var(--white);
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(3, 18, 37, 0.06);
 }
 
-.stat-card strong {
-  display: block;
-  color: var(--gold);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 3.8rem;
-  line-height: 1;
+.virya-strength-grid > .reveal:nth-child(2) .virya-strength-card {
+  --strength-accent: var(--teal-600);
 }
 
-.stat-card span {
-  display: block;
-  margin-top: 10px;
+.virya-strength-grid > .reveal:nth-child(3) .virya-strength-card {
+  --strength-accent: var(--gold);
+}
+
+.virya-strength-marker {
+  width: 42px;
+  height: 4px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: var(--strength-accent);
+}
+
+.virya-strength-label {
+  margin: 0;
+  color: var(--teal-600);
+  font-size: 0.76rem;
   font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.virya-strength-card h3 {
+  margin: 12px 0 14px;
+  color: var(--navy-950);
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  line-height: 1.12;
+}
+
+.virya-strength-copy {
+  margin: 0 0 24px;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.virya-strength-card button {
+  width: fit-content;
+  margin-top: auto;
+  padding: 6px 0;
+  color: var(--navy-700);
+  font-weight: 900;
+  text-align: left;
+}
+
+.virya-strength-card button:hover {
+  color: var(--teal-600);
 }
 
 .campus {
@@ -988,12 +1096,112 @@ h3 {
   color: #a15c00;
 }
 
+.apply-inquiry {
+  display: grid;
+  min-height: clamp(600px, 76svh, 760px);
+  align-items: center;
+  padding: clamp(58px, 7vw, 92px) clamp(18px, 5vw, 72px);
+  background:
+    linear-gradient(100deg, rgba(3, 18, 37, 0.97) 0%, rgba(6, 27, 54, 0.9) 44%, rgba(8, 38, 77, 0.7) 100%),
+    url("/DSC00344.jpg") center/cover;
+  color: var(--white);
+}
+
+.apply-inquiry-inner {
+  display: grid;
+  width: min(100%, 1180px);
+  grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.18fr);
+  gap: clamp(36px, 7vw, 88px);
+  align-items: center;
+  margin: 0 auto;
+}
+
+.apply-inquiry-copy {
+  max-width: 510px;
+}
+
+.apply-inquiry-copy .eyebrow {
+  color: var(--gold);
+}
+
+.apply-inquiry-copy h1 {
+  max-width: 620px;
+  margin-bottom: 24px;
+  color: var(--white);
+  font-size: clamp(3.5rem, 5vw, 4.8rem);
+  line-height: 0.95;
+}
+
+.apply-inquiry-copy > p:not(.eyebrow) {
+  max-width: 500px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.08rem;
+  line-height: 1.72;
+}
+
+.apply-inquiry-form {
+  width: 100%;
+  max-width: 620px;
+  justify-self: end;
+}
+
+.apply-inquiry .inquiry-form {
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  box-shadow: 0 24px 60px rgba(3, 18, 37, 0.28);
+}
+
+@media (min-width: 961px) {
+  .apply-inquiry {
+    --apply-form-overlap: clamp(32px, 2.8vw, 42px);
+    min-height: 0;
+    padding-bottom: 0;
+  }
+
+  .apply-inquiry-inner {
+    grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  }
+
+  .apply-inquiry-form {
+    position: relative;
+    z-index: 2;
+    max-width: 580px;
+  }
+
+  .apply-inquiry .inquiry-form {
+    height: auto;
+    min-height: 0;
+    align-content: start;
+    padding: clamp(22px, 2.5vw, 30px);
+    border-top: 3px solid var(--gold);
+    box-shadow: 0 20px 44px rgba(3, 18, 37, 0.24);
+    transform: translateY(var(--apply-form-overlap));
+  }
+
+  .apply-inquiry .inquiry-form button {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6px;
+  }
+
+  .apply-inquiry + .footer .footer-cta {
+    padding-top: calc(clamp(54px, 8vw, 86px) + clamp(32px, 2.8vw, 42px) + 20px);
+  }
+}
+
 .interior-hero {
   padding: clamp(58px, 9vw, 108px) clamp(18px, 5vw, 72px);
   background:
     linear-gradient(105deg, rgba(3, 18, 37, 0.96), rgba(8, 38, 77, 0.78)),
     url("/DSC00344.jpg") center/cover;
   color: var(--white);
+}
+
+.interior-hero-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
 }
 
 .interior-hero h1 {
@@ -1006,6 +1214,29 @@ h3 {
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.14rem;
   line-height: 1.7;
+}
+
+@media (min-width: 761px) {
+  .academics-hero-content {
+    display: grid;
+    justify-items: start;
+    row-gap: clamp(18px, 1.7vw, 24px);
+  }
+
+  .academics-hero-content > .eyebrow,
+  .academics-hero-content > h1,
+  .academics-hero-content > p,
+  .academics-hero-content > .hero-actions {
+    margin: 0;
+  }
+
+  .academics-hero-content > h1 {
+    margin-bottom: clamp(6px, 0.7vw, 10px);
+  }
+
+  .academics-hero-content > .hero-actions {
+    margin-top: clamp(4px, 0.5vw, 8px);
+  }
 }
 
 .page-highlights {
@@ -1218,11 +1449,11 @@ h3 {
   }
 
 
-  .highlight-grid {
+  .highlight-grid,
+  .virya-strength-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .why,
   .our-story,
   .campus,
   .news-events,
@@ -1252,6 +1483,21 @@ h3 {
 }
 
 @media (max-width: 960px) {
+  .apply-inquiry {
+    min-height: auto;
+  }
+
+  .apply-inquiry-inner {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .apply-inquiry-copy,
+  .apply-inquiry-form {
+    max-width: 680px;
+    justify-self: start;
+  }
+
   .primary-menu {
     display: none;
   }
@@ -1279,6 +1525,28 @@ h3 {
   }
 }
 @media (max-width: 760px) {
+  .apply-inquiry {
+    padding: 3.25rem clamp(18px, 5vw, 72px);
+    background-position: 58% center;
+  }
+
+  .apply-inquiry-inner {
+    gap: 1.75rem;
+  }
+
+  .apply-inquiry-copy h1 {
+    margin-bottom: 18px;
+    font-size: 3rem;
+  }
+
+  .apply-inquiry-copy > p:not(.eyebrow) {
+    font-size: 1rem;
+  }
+
+  .apply-inquiry .inquiry-form {
+    padding: 22px;
+  }
+
   .campus button.campus-preview {
     grid-template-columns: 1fr;
   }
@@ -1301,17 +1569,16 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .academic-stage-kindergarten .academic-grade-grid {
+  .kindergarten-feature {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .academic-stage-kindergarten .academic-grade-card {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .academic-stage-kindergarten .academic-grade-card > p {
-    margin-top: 14px;
+  .kindergarten-feature-heading {
+    padding-right: 0;
+    padding-bottom: 18px;
+    border-right: 0;
+    border-bottom: 2px solid var(--stage-accent);
   }
 
 
@@ -1379,7 +1646,7 @@ h3 {
 
   .search-results,
   .quote-grid,
-  .stat-grid,
+  .virya-strength-grid,
   .story-timeline,
   .highlight-grid,
   .footer-grid {

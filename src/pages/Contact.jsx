@@ -40,7 +40,7 @@ export default function Contact({ navigate, contactDetails }) {
               <a className="button gold" href={`mailto:${contactDetails.email}`}>
                 Email VIRYA
               </a>
-              <button className="button navy" type="button" onClick={() => navigate("admissions")}>
+              <button className="button navy" type="button" onClick={() => navigate("/admissions")}>
                 Admissions Inquiry
               </button>
             </div>
@@ -103,7 +103,7 @@ export default function Contact({ navigate, contactDetails }) {
             <a className="button gold" href={`mailto:${contactDetails.email}`}>
               General Questions
             </a>
-            <button className="button outline" type="button" onClick={() => navigate("admissions")}>
+            <button className="button outline" type="button" onClick={() => navigate("/admissions")}>
               Go to Admissions
             </button>
           </div>
