@@ -1198,6 +1198,15 @@ h3 {
   box-shadow: 0 24px 60px rgba(3, 18, 37, 0.28);
 }
 
+.apply-inquiry .inquiry-form > button[type="submit"] {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.apply-inquiry .form-status:empty {
+  display: none;
+}
+
 @media (min-width: 961px) {
   .apply-inquiry {
     --apply-form-overlap: clamp(32px, 2.8vw, 42px);
