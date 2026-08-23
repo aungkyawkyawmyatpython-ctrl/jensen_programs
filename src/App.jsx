@@ -10,6 +10,7 @@ import Faculty from "./pages/Faculty";
 import StudentLife from "./pages/StudentLife";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
+import Gallery from "./pages/Gallery";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -38,6 +39,12 @@ const menuGroups = [
   {
     id: "student-life",
     title: "Student Life",
+    links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
+    image: SCHOOL_IMAGES.studentLife,
+  },
+  {
+    id: "gallery",
+    title: "Gallery",
     links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
     image: SCHOOL_IMAGES.studentLife,
   },
@@ -190,6 +197,12 @@ const pageDetails = {
     title: "News & Events",
     headline: "News & Events",
     text: "Stay informed about the latest news, announcements, events, and updates from VIRYA Private School.",
+    actions: [],
+  },
+  gallery: {
+    title: "Gallery",
+    headline: "Gallery",
+    text: "Photographs from VIRYA school activities and shared experiences.",
     actions: [],
   },
   community: {
@@ -819,7 +832,9 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <AboutPageContent navigate={navigate} />
       ) : (
         <>
-          {page === "visit" ? (
+          {page === "gallery" ? (
+            <Gallery />
+          ) : page === "visit" ? (
             <Contact navigate={navigate} contactDetails={contactDetails} />
           ) : page === "news" ? (
             <News navigate={navigate} />

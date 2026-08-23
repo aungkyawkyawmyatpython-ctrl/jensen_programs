@@ -109,7 +109,7 @@ select:focus-visible {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 28px;
+  gap: clamp(18px, 2vw, 28px);
   padding: 14px clamp(18px, 5vw, 72px);
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(18px);
@@ -156,7 +156,8 @@ select:focus-visible {
 
 .primary-menu {
   justify-content: center;
-  font-size: 0.98rem;
+  gap: clamp(10px, 1.25vw, 18px);
+  font-size: clamp(0.9rem, 1.1vw, 0.98rem);
   font-weight: 900;
 }
 
