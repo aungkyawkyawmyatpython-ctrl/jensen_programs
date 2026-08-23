@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 export default function Header({
   headerHidden,
   navigate,
@@ -12,10 +14,49 @@ export default function Header({
   searchResults,
   utilityLinks,
 }) {
+  const menuButtonRef = useRef(null);
+  const searchButtonRef = useRef(null);
+  const firstMobileLinkRef = useRef(null);
+
+  useEffect(() => {
+    if (mobileMenuOpen) firstMobileLinkRef.current?.focus();
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen && !searchOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key !== "Escape") return;
+
+      if (mobileMenuOpen) {
+        setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+
+      if (searchOpen) {
+        setSearchOpen(false);
+        searchButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mobileMenuOpen, searchOpen, setMobileMenuOpen, setSearchOpen]);
+
+  const toggleSearch = () => {
+    setMobileMenuOpen(false);
+    setSearchOpen((current) => !current);
+  };
+
+  const toggleMobileMenu = () => {
+    setSearchOpen(false);
+    setMobileMenuOpen((current) => !current);
+  };
+
   return (
     <header className={`site-header ${headerHidden ? "hidden" : ""}`}>
       <div className="main-nav">
-        <button className="brand" type="button" onClick={() => navigate("/")} aria-label="Virya home">
+        <button className="brand" type="button" onClick={() => navigate("/")} aria-label="VIRYA Private School home">
           <img className="brand-logo" src="/viryaprivate.png" alt="" />
           <span>
             <strong>Virya</strong>
@@ -29,6 +70,7 @@ export default function Header({
               className={pathname === group.path ? "active" : ""}
               type="button"
               onClick={() => navigate(group.path)}
+              aria-current={pathname === group.path ? "page" : undefined}
               key={group.title}
             >
               {group.title}
@@ -37,24 +79,35 @@ export default function Header({
         </nav>
 
         <div className="nav-actions">
-          <button className="nav-apply" type="button" onClick={() => navigate("/apply")}>Apply</button>
+          <button
+            className={`nav-apply ${pathname === "/apply" ? "active" : ""}`}
+            type="button"
+            onClick={() => navigate("/apply")}
+            aria-current={pathname === "/apply" ? "page" : undefined}
+          >
+            Apply
+          </button>
           <button
             className={`nav-search ${searchOpen ? "active" : ""}`}
             type="button"
-            onClick={() => setSearchOpen((current) => !current)}
+            onClick={toggleSearch}
             aria-expanded={searchOpen}
             aria-controls="site-search"
+            aria-label={`${searchOpen ? "Close" : "Open"} site search`}
+            ref={searchButtonRef}
           >
             Search
           </button>
           <button
             className="menu-toggle"
             type="button"
-            onClick={() => setMobileMenuOpen((current) => !current)}
+            onClick={toggleMobileMenu}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
+            aria-label={`${mobileMenuOpen ? "Close" : "Open"} navigation menu`}
+            ref={menuButtonRef}
           >
-            Menu
+            {mobileMenuOpen ? "Close" : "Menu"}
           </button>
         </div>
       </div>
@@ -92,8 +145,15 @@ export default function Header({
         <div className="mobile-menu" id="mobile-menu">
           <nav aria-label="Mobile primary navigation">
             <strong>Explore Virya</strong>
-            {menuGroups.map((group) => (
-              <button type="button" onClick={() => navigate(group.path)} key={group.title}>
+            {menuGroups.map((group, index) => (
+              <button
+                className={pathname === group.path ? "active" : ""}
+                type="button"
+                onClick={() => navigate(group.path)}
+                aria-current={pathname === group.path ? "page" : undefined}
+                ref={index === 0 ? firstMobileLinkRef : undefined}
+                key={group.title}
+              >
                 {group.title}
               </button>
             ))}
@@ -101,7 +161,13 @@ export default function Header({
           <nav aria-label="Mobile quick links">
             <strong>Quick Links</strong>
             {utilityLinks.map(([target, label]) => (
-              <button type="button" onClick={() => navigate(target)} key={`mobile-${label}`}>
+              <button
+                className={pathname === target ? "active" : ""}
+                type="button"
+                onClick={() => navigate(target)}
+                aria-current={pathname === target ? "page" : undefined}
+                key={`mobile-${label}`}
+              >
                 {label}
               </button>
             ))}

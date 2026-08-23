@@ -16,58 +16,51 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
 const SCHOOL_IMAGES = {
-  academics: "/DSC00134.jpg",
-  admissions: "/DSC00136.jpg",
-  studentLife: "/DSC00344.jpg",
   campus: "/DSC00648.jpg",
   frontView: "/viryaprivateschool_frontview.jpg",
-
   story: "/student_group.jpg",
-  community: "/IMG_1111.JPG",
 };
 
 const menuGroups = [
   {
-    id: "academics",
     path: "/academics",
     title: "Academics",
     links: ["Kindergarten", "Primary School", "Middle School"],
-    image: SCHOOL_IMAGES.academics,
   },
   {
-    id: "admissions",
     path: "/admissions",
     title: "Admissions",
     links: ["How to Apply", "Programs Offered", "Tuition & Fees", "Admissions FAQ"],
-    image: SCHOOL_IMAGES.admissions,
   },
   {
-    id: "student-life",
     path: "/student-life",
     title: "Student Life",
     links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
-    image: SCHOOL_IMAGES.studentLife,
   },
   {
-    id: "gallery",
-    path: "/gallery",
-    title: "Gallery",
-    links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
-    image: SCHOOL_IMAGES.studentLife,
-  },
-  {
-    id: "faculty",
     path: "/faculty",
     title: "Faculty",
     links: ["Faculty Directory", "Founders", "Administration", "Teachers"],
-    image: SCHOOL_IMAGES.community,
   },
   {
-    id: "about",
+    path: "/news",
+    title: "News & Events",
+    links: ["Latest Updates", "Upcoming Events"],
+  },
+  {
+    path: "/gallery",
+    title: "Gallery",
+    links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
+  },
+  {
     path: "/about",
     title: "About",
-    links: ["Mission", "Leadership", "Campus", "Careers"],
-    image: SCHOOL_IMAGES.community,
+    links: ["Our Story", "Vision & Mission", "Core Values", "Leadership", "Campus", "Our Journey"],
+  },
+  {
+    path: "/contact",
+    title: "Contact",
+    links: ["Contact Details", "Visit VIRYA", "Find Us"],
   },
 ];
 
@@ -245,12 +238,6 @@ const pageDetails = {
     text: "Photographs from VIRYA school activities and shared experiences.",
     actions: [],
   },
-  community: {
-    title: "Virya by the Numbers",
-    headline: "Small enough to know every child.",
-    text: "Families choose Virya for close advising, strong academics, and a culture that feels personal.",
-    actions: [["/about", "Our Mission", "button gold"]],
-  },
   calendar: {
     title: "School Calendar",
     headline: "Plan the weeks ahead.",
@@ -275,7 +262,6 @@ const utilityLinks = [
   ["/calendar", "Calendar"],
   ["/portal", "Parent Portal"],
   ["/directory", "Directory"],
-  ["/news", "News"],
 ];
 
 const pageHighlights = {
@@ -383,6 +369,27 @@ function App() {
     return () => window.removeEventListener("scroll", updateHeader);
   }, [mobileMenuOpen, searchOpen]);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const mobileNavigation = window.matchMedia("(max-width: 1220px)");
+    const closeMenuAtDesktop = (event) => {
+      if (!event.matches) setMobileMenuOpen(false);
+    };
+
+    mobileNavigation.addEventListener("change", closeMenuAtDesktop);
+    return () => mobileNavigation.removeEventListener("change", closeMenuAtDesktop);
+  }, []);
+
   const updateApplication = (event) => {
     const { name, value } = event.target;
     setApplication((current) => ({ ...current, [name]: value }));
@@ -480,7 +487,6 @@ function App() {
         <Route path="/calendar" element={<InteriorPage page="calendar" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="/portal" element={<InteriorPage page="portal" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="/directory" element={<InteriorPage page="directory" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
-        <Route path="/community" element={<InteriorPage page="community" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="*" element={<NotFound navigate={navigate} />} />
       </Routes>
 
@@ -974,8 +980,6 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             />
           ) : page === "academics" ? (
             <Programs />
-          ) : page === "community" ? (
-            <ViryaStrengths navigate={navigate} />
           ) : (
             <InteriorHighlights page={page} navigate={navigate} />
           )}

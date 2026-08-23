@@ -12,11 +12,15 @@ export default function Footer({ navigate, contactDetails }) {
       <div className="footer-grid">
         <Reveal>
           <div className="footer-contact">
-            <div className="footer-brand">
+            <button
+              className="footer-brand"
+              type="button"
+              onClick={() => navigate("/")}
+              aria-label="VIRYA Private School home"
+            >
               <img src="/viryaprivate.png" alt="" />
               <strong>Virya Private School</strong>
-            </div>
-            <strong>Contact Us</strong>
+            </button>
             <address>{contactDetails.address}</address>
             {contactDetails.phones.map((phone) => (
               <a href={`tel:${phone}`} key={phone}>{phone}</a>
@@ -27,6 +31,7 @@ export default function Footer({ navigate, contactDetails }) {
         <Reveal delay={80}>
           <nav aria-label="Footer academics">
             <strong>Academics</strong>
+            <button type="button" onClick={() => navigate("/academics")}>Academics</button>
             <button type="button" onClick={() => navigate("/academics")}>Kindergarten</button>
             <button type="button" onClick={() => navigate("/academics")}>Primary School</button>
             <button type="button" onClick={() => navigate("/academics")}>Middle School</button>
@@ -35,19 +40,30 @@ export default function Footer({ navigate, contactDetails }) {
         <Reveal delay={160}>
           <nav aria-label="Footer admissions">
             <strong>Admissions</strong>
+            <button type="button" onClick={() => navigate("/admissions")}>Admissions</button>
             <button type="button" onClick={() => navigate("/apply")}>Apply</button>
-            <button type="button" onClick={() => navigate("/contact")}>Visit</button>
-            <button type="button" onClick={() => navigate("/admissions")}>Tuition & Aid</button>
           </nav>
         </Reveal>
         <Reveal delay={240}>
-          <nav aria-label="Footer community">
-            <strong>Community</strong>
-            <button type="button" onClick={() => navigate("/news")}>News</button>
+          <nav aria-label="Footer explore">
+            <strong>Explore</strong>
+            <button type="button" onClick={() => navigate("/about")}>About</button>
+            <button type="button" onClick={() => navigate("/faculty")}>Faculty</button>
             <button type="button" onClick={() => navigate("/student-life")}>Student Life</button>
-            <button type="button" onClick={() => navigate("/")}>Back to Top</button>
+            <button type="button" onClick={() => navigate("/news")}>News &amp; Events</button>
+            <button type="button" onClick={() => navigate("/gallery")}>Gallery</button>
+            <button type="button" onClick={() => navigate("/contact")}>Contact</button>
           </nav>
         </Reveal>
+      </div>
+      <div className="footer-bottom">
+        <p>&copy; 2026 VIRYA Private School. All rights reserved.</p>
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          Back to Top
+        </button>
       </div>
     </footer>
   );
