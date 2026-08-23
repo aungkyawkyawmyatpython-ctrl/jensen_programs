@@ -6,6 +6,7 @@ import { Reveal, SafeImage } from "./components/SiteElements";
 import Home from "./pages/Home";
 import AboutInstitutionalSections from "./pages/About";
 import Faculty from "./pages/Faculty";
+import StudentLife from "./pages/StudentLife";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -34,7 +35,7 @@ const menuGroups = [
   {
     id: "student-life",
     title: "Student Life",
-    links: ["Clubs", "Arts", "Athletics", "Service"],
+    links: ["Science Fair", "Visit to Yangon", "Football Competition", "Debate", "Martyrs' Day"],
     image: SCHOOL_IMAGES.studentLife,
   },
   {
@@ -160,9 +161,9 @@ const pageDetails = {
   },
   "student-life": {
     title: "Student Life",
-    headline: "A full school day, not just a class schedule.",
-    text: "Clubs, athletics, arts, leadership, service, and advisory help students build confidence beyond academics.",
-    actions: [["calendar", "See Events", "button gold"]],
+    headline: "Life at VIRYA",
+    text: "Learning at VIRYA extends beyond the classroom through activities, shared experiences, teamwork, creativity, and community.",
+    actions: [],
   },
   faculty: {
     title: "Faculty",
@@ -226,11 +227,6 @@ const pageHighlights = {
     ["Step 1", "Tell us about your child", "Start with a short inquiry so admissions can recommend the right next step.", "admissions", "Start Inquiry"],
     ["Step 2", "Visit the campus", "Tour classrooms, meet teachers, and see the school day in motion.", "visit", "Book a Tour"],
     ["Step 3", "Plan enrollment", "Review placement, documents, tuition, and start dates with the admissions office.", "directory", "Contact Admissions"],
-  ],
-  "student-life": [
-    ["Clubs", "Daily space to try something new", "Students explore arts, robotics, athletics, leadership, and service blocks.", "calendar", "See Events"],
-    ["Advisory", "Known by name", "Advisors help students build confidence, organization, friendship, and reflection habits.", "about", "Meet the Team"],
-    ["Campus", "Built for movement and making", "Labs, studios, courts, and gathering spaces keep the full day active.", "visit", "Tour Spaces"],
   ],
   about: [
     ["Mission", "A private school with a public purpose", "Virya is built around scholarship, character, wellbeing, and service.", "community", "View Numbers"],
@@ -816,7 +812,9 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <AboutPageContent navigate={navigate} />
       ) : (
         <>
-          {page === "faculty" ? (
+          {page === "student-life" ? (
+            <StudentLife />
+          ) : page === "faculty" ? (
             <Faculty facultyData={teamMembers} />
           ) : page === "admissions" ? (
             <AdmissionsForm
@@ -831,7 +829,7 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             <InteriorHighlights page={page} navigate={navigate} />
           )}
 
-          {(page === "student-life" || page === "visit") && <Campus />}
+          {page === "visit" && <Campus />}
           {(page === "news" || page === "calendar") && <NewsEvents />}
         </>
       )}

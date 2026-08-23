@@ -1,0 +1,80 @@
+const activityPath = (folder, filename) =>
+  `/${folder}/${encodeURIComponent(filename)}`;
+
+export const studentLifeEvents = [
+  {
+    id: "science-fair-2025",
+    title: "Science Fair",
+    year: "2025",
+    description: "Photographs from VIRYA's 2025 Science Fair.",
+    images: [
+      "experiment_from_kids.jpg",
+      "DSCF4983 copy.jpg",
+      "DSCF5009 copy.jpg",
+      "DSCF5012 copy.jpg",
+      "DSCF5034 copy.jpg",
+      "DSCF5035 copy.jpg",
+      "DSCF5042 copy.jpg",
+      "DSCF5053 copy.jpg",
+      "experiment_from_kids2.jpg",
+      "experiment_from_kids3.jpg",
+    ].map((filename) => activityPath("science_fair_2025", filename)),
+  },
+  {
+    id: "visit-to-yangon-2025",
+    title: "Visit to Yangon",
+    year: "2025",
+    description: "Photographs from VIRYA's 2025 visit to Yangon.",
+    images: [
+      "IMG_2504.jpg",
+      "IMG_2508.jpg",
+      "IMG_2511.jpg",
+      "IMG_2554.jpg",
+      "IMG_2581.jpg",
+      "IMG_2598.jpg",
+      "IMG_2627.jpg",
+      "IMG_2693.jpg",
+    ].map((filename) => activityPath("Visit_to_yangon_2025", filename)),
+  },
+  {
+    id: "football-competition-2023",
+    title: "Football Competition",
+    year: "2023",
+    description: "Photographs from VIRYA's 2023 football competition.",
+    images: [
+      "DSCF0278 copy.jpg",
+      "DSCF0264 copy.jpg",
+      "DSCF0274 copy.jpg",
+      "DSCF0295 copy.jpg",
+      "DSCF0319 copy.jpg",
+      "DSCF5592 copy.jpg",
+    ].map((filename) => activityPath("football_competition_2023", filename)),
+  },
+  {
+    id: "debate-2023",
+    title: "Debate",
+    year: "2023",
+    description: "Photographs from VIRYA's 2023 debate activity.",
+    images: [
+      "DSCF5608 copy.jpg",
+      "DSCF0344 copy.jpg",
+      "DSCF5613 copy.jpg",
+      "DSCF5646 copy.jpg",
+      "DSCF5647 copy.jpg",
+      "DSCF5665 copy.jpg",
+    ].map((filename) => activityPath("Debate_2023", filename)),
+  },
+  {
+    id: "martyrs-day",
+    title: "Martyrs' Day",
+    year: null,
+    description: "Photographs from VIRYA's Martyrs' Day activity.",
+    images: [
+      "DSCF0338 copy.jpg",
+      "DSCF0319 copy(1).jpg",
+      "DSCF0353 copy.jpg",
+      "DSCF0430 copy.jpg",
+      "DSCF0453 copy.jpg",
+    ].map((filename) => activityPath("martyrs_day", filename)),
+  },
+];
