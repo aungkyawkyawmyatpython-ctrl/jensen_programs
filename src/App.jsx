@@ -8,6 +8,7 @@ import AboutInstitutionalSections from "./pages/About";
 import Admissions from "./pages/Admissions";
 import Faculty from "./pages/Faculty";
 import StudentLife from "./pages/StudentLife";
+import News from "./pages/News";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -185,10 +186,10 @@ const pageDetails = {
     actions: [["admissions", "Request a Visit", "button gold"]],
   },
   news: {
-    title: "News & Stories",
-    headline: "The latest from our classrooms and community.",
-    text: "Read updates about student work, school events, arts, service, and academic life.",
-    actions: [["calendar", "See Events", "button gold"]],
+    title: "News & Events",
+    headline: "News & Events",
+    text: "Stay informed about the latest news, announcements, events, and updates from VIRYA Private School.",
+    actions: [],
   },
   community: {
     title: "Virya by the Numbers",
@@ -817,7 +818,9 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <AboutPageContent navigate={navigate} />
       ) : (
         <>
-          {page === "student-life" ? (
+          {page === "news" ? (
+            <News navigate={navigate} />
+          ) : page === "student-life" ? (
             <StudentLife />
           ) : page === "faculty" ? (
             <Faculty facultyData={teamMembers} />
@@ -842,7 +845,7 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
           )}
 
           {page === "visit" && <Campus />}
-          {(page === "news" || page === "calendar") && <NewsEvents />}
+          {page === "calendar" && <NewsEvents />}
         </>
       )}
     </>
