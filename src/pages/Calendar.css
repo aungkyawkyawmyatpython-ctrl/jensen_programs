@@ -1,0 +1,157 @@
+.calendar-page {
+  background: var(--blue-gray-50);
+}
+
+.calendar-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.calendar-heading > div {
+  max-width: 48rem;
+}
+
+.calendar-heading h2,
+.calendar-heading p {
+  margin: 0;
+}
+
+.calendar-heading h2 {
+  margin-top: 0.35rem;
+}
+
+.calendar-legend {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.55rem;
+  align-items: center;
+  color: var(--navy-800);
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.calendar-legend span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #c83232;
+}
+
+.calendar-image-button {
+  display: block;
+  width: 100%;
+  padding: clamp(0.5rem, 1.5vw, 1rem) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  background: var(--white) !important;
+  box-shadow: 0 12px 30px rgba(3, 18, 37, 0.08);
+}
+
+.calendar-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.calendar-image-button > span {
+  display: block;
+  margin-top: 0.7rem;
+  color: var(--teal-600);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.calendar-lightbox {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  overflow: auto;
+  place-items: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+  background: rgba(3, 18, 37, 0.9);
+}
+
+.calendar-lightbox-dialog {
+  width: min(96vw, 1280px);
+  max-height: 94dvh;
+  overflow: auto;
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.calendar-lightbox-dialog header {
+  display: flex;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.calendar-lightbox-dialog h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+
+.calendar-lightbox-dialog header button {
+  min-height: 44px;
+  padding: 0.55rem 1rem !important;
+  border-radius: var(--radius) !important;
+  background: var(--navy-900) !important;
+  color: var(--white) !important;
+  font-weight: 850;
+}
+
+.calendar-lightbox-image {
+  padding: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.calendar-lightbox-image img {
+  display: block;
+  width: 100%;
+  max-height: calc(94dvh - 5rem);
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .calendar-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .calendar-image-button {
+    padding: 0.35rem !important;
+  }
+
+  .calendar-lightbox {
+    padding: 0.4rem;
+  }
+
+  .calendar-lightbox-dialog {
+    width: 100%;
+    max-height: 98dvh;
+  }
+
+  .calendar-lightbox-dialog header {
+    align-items: flex-start;
+  }
+
+  .calendar-lightbox-image img {
+    max-height: calc(98dvh - 5rem);
+  }
+}

@@ -12,6 +12,7 @@ import StudentLife from "./pages/StudentLife";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import Calendar from "./pages/Calendar";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -113,25 +114,6 @@ const viryaStrengths = [
     target: "/student-life",
     action: "Explore Student Life",
   },
-];
-
-const facilities = [
-  ["Discovery Lab", "Hands-on science, robotics, and design challenges for young researchers."],
-  ["Arts House", "Music rooms, drama studio, visual arts, and student exhibition space."],
-  ["Wellbeing Center", "Advisory, counseling, learning support, and family partnership."],
-  ["Athletics Court", "Daily movement, team sports, fitness, and community events."],
-];
-
-const news = [
-  ["Academics", "Virya students present climate solutions at the annual inquiry showcase."],
-  ["Community", "Family service day supports local literacy and food security partners."],
-  ["Arts", "Middle school theatre ensemble opens spring performance week."],
-];
-
-const events = [
-  ["Jun 18", "Open Morning", "Tour classrooms and meet admissions."],
-  ["Jun 25", "Arts Evening", "Student music, theatre, and gallery work."],
-  ["Jul 08", "Admissions Q&A", "A practical session for applicant families."],
 ];
 
 const missionVision = [
@@ -239,50 +221,14 @@ const pageDetails = {
     actions: [],
   },
   calendar: {
-    title: "School Calendar",
-    headline: "Plan the weeks ahead.",
-    text: "Open mornings, performances, conferences, exhibitions, holidays, and admissions milestones live here.",
-    actions: [["/contact", "Plan a Visit", "button gold"]],
-  },
-  portal: {
-    title: "Portal",
-    headline: "Family and student resources.",
-    text: "A future home for forms, messages, payments, and student schedules.",
-    actions: [["/calendar", "View Calendar", "button gold"]],
-  },
-  directory: {
-    title: "Directory",
-    headline: "Find the right office.",
-    text: "Admissions, student support, school leadership, faculty teams, and operations contacts.",
-    actions: [["/admissions", "Admissions Office", "button gold"]],
+    title: "Academic Year",
+    headline: "Academic Calendar 2026\u20132027",
+    text: "Families can view VIRYA's published academic-year calendar here.",
+    actions: [],
   },
 };
 
-const utilityLinks = [
-  ["/calendar", "Calendar"],
-  ["/portal", "Parent Portal"],
-  ["/directory", "Directory"],
-];
-
-const pageHighlights = {
-  about: [
-    ["Core Values", "Character guides everyday school life", "VIRYA values shape student character, relationships, learning, and responsibility.", "/about", "Explore Our Values"],
-    ["Leadership", "People who guide the culture", "Faculty and school leaders work closely with families and students.", "/directory", "Find Offices"],
-    ["Campus", "A learning community with room to grow", "Classrooms, labs, arts spaces, and advisory areas support the full school day.", "/contact", "Visit Campus"],
-  ],
-  news: news.map(([tag, title]) => [tag, title, "Read more from classrooms, arts, service, and student life.", "/news", "Read More"]),
-  calendar: events.map(([date, title, text]) => [date, title, text, "/contact", "Plan Around It"]),
-  portal: [
-    ["Forms", "Family documents", "Admissions records, permission forms, and school documents are organized here.", "/directory", "Contact Office"],
-    ["Messages", "School updates", "Families can keep up with school reminders, events, and community notes.", "/news", "Latest News"],
-    ["Schedules", "Dates and routines", "Calendar milestones, performances, conferences, and admissions dates stay easy to find.", "/calendar", "Open Calendar"],
-  ],
-  directory: [
-    ["Admissions", "Enrollment questions", "For applications, visits, placement, tuition, and start dates.", "/admissions", "Apply"],
-    ["Student Support", "Wellbeing and learning support", "For advisory, counseling, learning needs, and family partnership.", "/student-life", "Student Life"],
-    ["Operations", "Campus and records", "For documents, schedules, general office help, and school logistics.", "/portal", "Family Portal"],
-  ],
-};
+const utilityLinks = [["/calendar", "Calendar"]];
 
 const gradeOptions = programs.map(([title]) => title);
 
@@ -299,12 +245,6 @@ const searchItems = [
     target: "/academics",
     type: "Program",
   })),
-  ...events.map(([date, title, text]) => ({
-    title,
-    text: `${date}. ${text}`,
-    target: "/calendar",
-    type: "Event",
-  })),
   ...missionVision.map(([title, text]) => ({
     title,
     text,
@@ -317,15 +257,19 @@ const searchItems = [
     target: "/about",
     type: "About",
   },
-  ...news.map(([tag, title]) => ({
-    title,
-    text: tag,
-    target: "/news",
-    type: "News",
-  })),
   { title: "Apply", text: "Start an admissions inquiry", target: "/apply", type: "Action" },
-  { title: "Visit Virya", text: "Open mornings, tours, and student shadow days", target: "/contact", type: "Action" },
-  { title: "Parent Portal", text: "Forms, schedules, messages, and family resources", target: "/portal", type: "Resource" },
+  {
+    title: "Academic Calendar",
+    text: "VIRYA Academic Calendar 2026\u20132027",
+    target: "/calendar",
+    type: "Resource",
+  },
+  {
+    title: "Calendar 2026\u20132027",
+    text: "View VIRYA's published academic-year calendar",
+    target: "/calendar",
+    type: "Resource",
+  },
 ];
 
 function App() {
@@ -458,14 +402,12 @@ function App() {
           element={
             <>
               <Home navigate={navigate} />
-              <Notice />
+              <HomeAdmissionsCta navigate={navigate} />
               <MissionVision />
               <OurStory />
               <Programs />
               <ViryaStrengths navigate={navigate} />
               <Campus navigate={navigate} showHomePreview />
-              <StoryStrip navigate={navigate} />
-              <NewsEvents />
               <AdmissionsForm
                 application={application}
                 submissionStatus={submissionStatus}
@@ -482,11 +424,9 @@ function App() {
         <Route path="/admissions" element={<InteriorPage page="admissions" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="/apply" element={<InteriorPage page="apply" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="/news" element={<InteriorPage page="news" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
+        <Route path="/calendar" element={<InteriorPage page="calendar" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="/gallery" element={<InteriorPage page="gallery" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="/contact" element={<InteriorPage page="contact" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
-        <Route path="/calendar" element={<InteriorPage page="calendar" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
-        <Route path="/portal" element={<InteriorPage page="portal" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
-        <Route path="/directory" element={<InteriorPage page="directory" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="*" element={<NotFound navigate={navigate} />} />
       </Routes>
 
@@ -495,16 +435,31 @@ function App() {
   );
 }
 
-function Notice() {
+function HomeAdmissionsCta({ navigate }) {
   return (
-    <Reveal>
-      <section className="notice">
-        <div>
-          <h2>Admissions for 2026 are open</h2>
-          <p>Open mornings, student visits, and family consultations are available this month.</p>
-        </div>
-      </section>
-    </Reveal>
+    <section className="home-admissions-cta" aria-labelledby="home-admissions-title">
+      <div className="home-admissions-cta-inner">
+        <Reveal className="home-admissions-copy" direction="left">
+          <p className="eyebrow">Admissions</p>
+          <h2 id="home-admissions-title">Begin Your VIRYA Journey</h2>
+          <p>
+            Explore programs from Kindergarten through Grade 9 and start an admissions inquiry for your family.
+          </p>
+        </Reveal>
+        <Reveal className="home-admissions-actions" direction="right">
+          <button className="button gold" type="button" onClick={() => navigate("/admissions")}>
+            Explore Admissions
+          </button>
+          <button
+            className="button home-admissions-secondary"
+            type="button"
+            onClick={() => navigate("/contact")}
+          >
+            Contact VIRYA
+          </button>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
@@ -702,22 +657,11 @@ function Campus({ aboutPage = false, showHomePreview = false, navigate }) {
             grow, and take part in school life.
           </p>
         )}
-        {aboutPage ? (
+        {aboutPage && (
           <p className="about-copy-placeholder about-facilities-placeholder">
             Official facilities information is awaiting confirmation from VIRYA
             staff.
           </p>
-        ) : (
-          <div className="facility-list">
-            {facilities.map(([title, text], index) => (
-              <Reveal delay={index * 60} key={title}>
-                <article>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
         )}
         {showHomePreview && (
           <button className="campus-preview" type="button" onClick={() => navigate("/about")}>
@@ -732,62 +676,6 @@ function Campus({ aboutPage = false, showHomePreview = false, navigate }) {
           </button>
         )}
       </Reveal>
-    </section>
-  );
-}
-
-function StoryStrip({ navigate }) {
-  return (
-    <Reveal>
-      <section className="section story-strip">
-        <div>
-          <p className="eyebrow">Student Success</p>
-          <h2>"Virya made school feel challenging and safe at the same time."</h2>
-          <p>
-            A Grade 8 student reflects on learning to lead a science team, perform
-            on stage, and ask better questions in every class.
-          </p>
-        </div>
-        <button className="button navy" type="button" onClick={() => navigate("/news")}>Read Stories</button>
-      </section>
-    </Reveal>
-  );
-}
-
-function NewsEvents() {
-  return (
-    <section className="section news-events" id="news">
-      <div className="news-column">
-        <Reveal className="section-heading">
-          <p className="eyebrow">Featured News</p>
-          <h2>What is happening at Virya.</h2>
-        </Reveal>
-        {news.map(([tag, title], index) => (
-          <Reveal delay={index * 65} key={title}>
-            <article className="news-card">
-              <span>{tag}</span>
-              <h3>{title}</h3>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-      <div className="events-column" id="visit">
-        <Reveal className="section-heading">
-          <p className="eyebrow">Upcoming Events</p>
-          <h2>Ways to connect.</h2>
-        </Reveal>
-        {events.map(([date, title, text], index) => (
-          <Reveal delay={index * 65} key={title}>
-            <article className="event-card">
-              <time>{date}</time>
-              <div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
     </section>
   );
 }
@@ -954,6 +842,7 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <AboutPageContent navigate={navigate} />
       ) : (
         <>
+          {page === "calendar" && <Calendar />}
           {page === "gallery" ? (
             <Gallery />
           ) : page === "contact" ? (
@@ -980,39 +869,10 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             />
           ) : page === "academics" ? (
             <Programs />
-          ) : (
-            <InteriorHighlights page={page} navigate={navigate} />
-          )}
-
-          {page === "calendar" && <NewsEvents />}
+          ) : null}
         </>
       )}
     </>
-  );
-}
-
-function InteriorHighlights({ page, navigate }) {
-  const highlights = pageHighlights[page] || pageHighlights.about;
-
-  return (
-    <section className="section page-highlights">
-      <Reveal className="section-heading">
-        <p className="eyebrow">Explore</p>
-        <h2>Choose the path that fits your family.</h2>
-      </Reveal>
-      <div className="highlight-grid">
-        {highlights.map(([kicker, title, text, target, action], index) => (
-          <Reveal delay={index * 70} key={`${page}-${kicker}-${title}`}>
-            <article className="highlight-card">
-              <span>{kicker}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <button type="button" onClick={() => navigate(target)}>{action}</button>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-    </section>
   );
 }
 

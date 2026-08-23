@@ -118,7 +118,7 @@ export default function Header({
             <span>What are you looking for?</span>
             <input
               type="search"
-              placeholder="Search admissions, Grade 4, calendar, clubs, tuition..."
+              placeholder="Search academics, admissions, Grade 4, faculty..."
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
               autoFocus
@@ -135,7 +135,7 @@ export default function Header({
                 </button>
               ))
             ) : (
-              <p>No matches yet. Try "Grade 4", "visit", "arts", or "tuition".</p>
+              <p>No matches yet. Try "Grade 4", "admissions", "faculty", or "gallery".</p>
             )}
           </div>
         </div>
@@ -158,15 +158,15 @@ export default function Header({
               </button>
             ))}
           </nav>
-          <nav aria-label="Mobile quick links">
-            <strong>Quick Links</strong>
+          <nav aria-label="Quick menu">
+            <strong>Quick Menu</strong>
             {utilityLinks.map(([target, label]) => (
               <button
                 className={pathname === target ? "active" : ""}
                 type="button"
                 onClick={() => navigate(target)}
                 aria-current={pathname === target ? "page" : undefined}
-                key={`mobile-${label}`}
+                key={`quick-${label}`}
               >
                 {label}
               </button>
