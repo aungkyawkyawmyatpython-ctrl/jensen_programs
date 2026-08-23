@@ -123,29 +123,6 @@
   object-fit: cover;
 }
 
-.principal-photo-placeholder {
-  display: grid;
-  place-content: center;
-  gap: 0.35rem;
-  padding: 1.5rem;
-  border: 1px dashed var(--line);
-  background: var(--white);
-  color: var(--muted);
-  text-align: center;
-}
-
-.principal-photo-placeholder span {
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.principal-photo-placeholder small {
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
 
 .principal-message-copy {
   max-width: 46rem;
@@ -163,6 +140,21 @@
 
 .principal-identity span {
   color: var(--muted);
+}
+
+.principal-faculty-link {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin-top: 1.6rem;
+  padding: 0 0 0.35rem;
+  border-bottom: 2px solid var(--gold);
+  color: var(--navy-800);
+  font-weight: 850;
+}
+
+.principal-faculty-link:hover {
+  color: var(--teal-600);
 }
 
 .about-journey {

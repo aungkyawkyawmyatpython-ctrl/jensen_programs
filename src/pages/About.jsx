@@ -1,4 +1,8 @@
-import { Reveal, SafeImage } from "../components/SiteElements";
+import {
+  ProfilePhotoPlaceholder,
+  Reveal,
+  SafeImage,
+} from "../components/SiteElements";
 import "./About.css";
 
 const officialAboutCopy = {
@@ -21,7 +25,7 @@ const principalProfile = {
   message: "",
 };
 
-export default function AboutInstitutionalSections() {
+export default function AboutInstitutionalSections({ navigate }) {
   return (
     <>
       <section className="section about-copy-section about-values" id="core-values">
@@ -93,10 +97,10 @@ export default function AboutInstitutionalSections() {
                   }
                 />
               ) : (
-                <div className="principal-photo-placeholder">
-                  <span>Principal photograph</span>
-                  <small>To be provided by VIRYA</small>
-                </div>
+                <ProfilePhotoPlaceholder
+                  className="principal-photo-placeholder"
+                  ariaLabel="Principal photo unavailable"
+                />
               )}
             </div>
 
@@ -118,6 +122,13 @@ export default function AboutInstitutionalSections() {
                   {principalProfile.title && <span>{principalProfile.title}</span>}
                 </div>
               )}
+              <button
+                className="principal-faculty-link"
+                type="button"
+                onClick={() => navigate("faculty")}
+              >
+                Meet Our Faculty <span aria-hidden="true">→</span>
+              </button>
             </div>
           </Reveal>
         </div>

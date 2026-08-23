@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Reveal, SafeImage } from "./components/SiteElements";
 import Home from "./pages/Home";
 import AboutInstitutionalSections from "./pages/About";
+import Faculty from "./pages/Faculty";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -35,6 +36,12 @@ const menuGroups = [
     title: "Student Life",
     links: ["Clubs", "Arts", "Athletics", "Service"],
     image: SCHOOL_IMAGES.studentLife,
+  },
+  {
+    id: "faculty",
+    title: "Faculty",
+    links: ["Faculty Directory", "Founders", "Administration", "Teachers"],
+    image: SCHOOL_IMAGES.community,
   },
   {
     id: "about",
@@ -135,7 +142,7 @@ const teamMembers = [
   ["ဆရာမ", "ဒေါ်ဝင့်စန္ဒာထွန်း", "B.A. (Myanmar)", "/faculty/daw-wint-sandar-htun.jpg"],
   ["ဆရာမ", "ဒေါ်အေးအေးသိန်း", "B.Sc-B.Ed. (သင်္ချာ)", "/faculty/daw-aye-aye-thein.jpg"],
   ["ဆရာမ", "ဒေါ်ဖူးသက်ညွှန်းစိမ်း", "B.Com. (Eco)", "/faculty/daw-phu-thet-nyunt-sein.jpg"],
-  ["ဆရာမ", "ဒေါ်မိုးအိအိဇော်", "B.Sc. (Math)", "/faculty/daw-moe-ei-ei-zaw.jpg"],
+  ["ဆရာမ", "ဒေါ်မိုးအိအိဇော်", "B.Sc. (Math)", null],
 ];
 
 const pageDetails = {
@@ -156,6 +163,12 @@ const pageDetails = {
     headline: "A full school day, not just a class schedule.",
     text: "Clubs, athletics, arts, leadership, service, and advisory help students build confidence beyond academics.",
     actions: [["calendar", "See Events", "button gold"]],
+  },
+  faculty: {
+    title: "Faculty",
+    headline: "Meet Our Faculty",
+    text: "Meet the educators and school leaders currently listed in the VIRYA Private School directory.",
+    actions: [],
   },
   about: {
     title: "About Virya",
@@ -762,15 +775,14 @@ function AdmissionsForm({ application, submissionStatus, updateApplication, subm
   );
 }
 
-function AboutPageContent() {
+function AboutPageContent({ navigate }) {
   return (
     <>
       <OurStory aboutPage showTimeline={false} />
       <MissionVision />
-      <AboutInstitutionalSections />
+      <AboutInstitutionalSections navigate={navigate} />
       <Campus aboutPage />
       <OurJourney />
-      <AboutTeam />
     </>
   );
 }
@@ -801,10 +813,12 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
       </section>
 
       {page === "about" ? (
-        <AboutPageContent />
+        <AboutPageContent navigate={navigate} />
       ) : (
         <>
-          {page === "admissions" ? (
+          {page === "faculty" ? (
+            <Faculty facultyData={teamMembers} />
+          ) : page === "admissions" ? (
             <AdmissionsForm
               application={application}
               submissionStatus={submissionStatus}
@@ -842,31 +856,6 @@ function InteriorHighlights({ page, navigate }) {
               <h3>{title}</h3>
               <p>{text}</p>
               <button type="button" onClick={() => navigate(target)}>{action}</button>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function AboutTeam() {
-  return (
-    <section className="section about-team">
-      <Reveal className="section-heading">
-        <p className="eyebrow">About Us</p>
-        <h2>Meet the people guiding Virya students.</h2>
-      </Reveal>
-      <div className="team-grid">
-        {teamMembers.map(([role, name, focus, image], index) => (
-          <Reveal delay={(index % 5) * 45} key={`${role}-${name}`}>
-            <article className="team-card">
-              <SafeImage src={image} alt={`${name}, ${role}`} />
-              <div>
-                <span lang="my">{role}</span>
-                <h3 lang="my">{name}</h3>
-                <p>{focus}</p>
-              </div>
             </article>
           </Reveal>
         ))}

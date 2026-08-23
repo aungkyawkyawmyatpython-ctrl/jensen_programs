@@ -50,3 +50,19 @@ export function SafeImage({ src, alt = "", className = "", loading = "lazy" }) {
     />
   );
 }
+
+export function ProfilePhotoPlaceholder({
+  label = "Photo Coming Soon",
+  ariaLabel = "Profile photo unavailable",
+  className = "",
+}) {
+  return (
+    <div
+      className={`profile-photo-placeholder ${className}`}
+      role="img"
+      aria-label={ariaLabel}
+    >
+      <span>{label}</span>
+    </div>
+  );
+}
