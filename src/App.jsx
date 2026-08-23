@@ -275,6 +275,25 @@ const searchItems = [
 function App() {
   const location = useLocation();
   const routerNavigate = useNavigate();
+
+  useEffect(() =>{
+    const titles = {
+      "/": "VIRYA Private School | Hpa An, Kayin State",
+      "/about": "About | VIRYA Private School",
+      "/academics": "Academics | VIRYA Private School",
+      "/admissions": "Admissions | VIRYA Private School",
+      "/apply": "Apply | VIRYA Private School",
+      "/faculty": "Faculty | VIRYA Private School",
+      "/student-life": "Student Life | VIRYA Private School",
+      "/gallery": "Gallery | VIRYA Private School",
+      "/news": "News & Events | VIRYA Private School",
+      "/contact": "Contact | VIRYA Private School",
+      "/calendar": "Academic Calendar | VIRYA Private School",
+  };
+   document.title =
+      titles[location.pathname] ||
+      "VIRYA Private School | Hpa An, Kayin State";
+  }, [location.pathname]);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -357,8 +376,10 @@ function App() {
     try {
       const response = await fetch("https://formspree.io/f/xgawbpld", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        Accept: "application/json",
+        headers: { "Content-Type": "application/json", 
+          Accept: "application/json",
+        },
+        
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
