@@ -100,7 +100,6 @@ select:focus-visible {
 
 .primary-menu button:hover,
 .nav-actions button:hover,
-.program-card button:hover,
 .highlight-card button:hover,
 .footer button:hover {
   color: var(--gold);
@@ -498,87 +497,160 @@ h3 {
   line-height: 1.28;
 }
 
-.program-finder {
+.program-journey {
   background: var(--white);
 }
 
-.program-search {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 28px;
-  font-weight: 950;
+.program-journey-inner {
+  width: min(100%, 1280px);
+  margin: 0 auto;
 }
 
-.program-search label {
-  display: grid;
-  gap: 10px;
+.program-journey-heading {
+  max-width: 780px;
+  margin-bottom: clamp(36px, 5vw, 56px);
 }
 
-.program-search input {
-  width: min(680px, 100%);
-  min-height: 56px;
-  padding: 0 18px;
-  border: 2px solid var(--navy-800);
-  border-radius: var(--radius);
-  background: var(--white);
-  color: var(--ink);
-  font: inherit;
+.program-journey-heading > p:not(.eyebrow) {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
 }
 
-.program-grid {
+.academic-stages {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
+  gap: clamp(32px, 4vw, 44px);
+}
+
+.academic-stage {
+  --stage-accent: var(--teal-600);
+  padding: clamp(24px, 3vw, 34px);
   border: 1px solid var(--line);
-}
-
-.program-card {
-  min-height: 310px;
-  height: 100%;
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--paper);
 }
 
-.program-card span,
-.news-card span,
-.highlight-card span {
-  color: var(--teal-600);
-  font-size: 0.8rem;
+.academic-stage-kindergarten {
+  --stage-accent: #b17608;
+  background: #fffaf0;
+}
+
+.academic-stage-primary {
+  --stage-accent: var(--teal-600);
+  background: #f4f8f6;
+}
+
+.academic-stage-middle {
+  --stage-accent: var(--navy-700);
+  background: #f3f6fa;
+}
+
+.academic-stage-header {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.45fr) minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 54px);
+  align-items: end;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--stage-accent);
+}
+
+.academic-stage-header h3 {
+  margin: 0;
+  color: var(--navy-950);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+}
+
+.academic-stage-header span {
+  display: block;
+  margin-top: 7px;
+  color: var(--stage-accent);
+  font-size: 0.76rem;
   font-weight: 950;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.program-card h3 {
-  margin-top: 54px;
-}
-
-.program-card p,
-.why p,
-.story-content p,
-.facility-list p,
-.story-strip p,
-.event-card p,
-.admissions-copy p {
+.academic-stage-header p {
+  max-width: 620px;
+  margin: 0;
   color: var(--muted);
-  line-height: 1.72;
+  line-height: 1.6;
 }
 
-.program-card button,
-.why button,
-.highlight-card button {
-  margin-top: auto;
-  color: var(--navy-800);
+.academic-grade-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.academic-stage-kindergarten .academic-grade-grid {
+  grid-template-columns: 1fr;
+}
+
+.academic-grade-grid > .reveal {
+  height: 100%;
+}
+
+.academic-grade-card {
+  height: 100%;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--stage-accent);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 8px 20px rgba(3, 18, 37, 0.05);
+}
+
+.academic-stage-kindergarten .academic-grade-card {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.38fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 52px);
+  align-items: center;
+}
+
+.academic-grade-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.academic-grade-title h4 {
+  margin: 0;
+  color: var(--navy-950);
+  font-size: 1.08rem;
+}
+
+.academic-grade-title span {
+  display: grid;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--stage-accent);
+  color: var(--white);
+  font-size: 0.72rem;
   font-weight: 950;
-  text-align: left;
 }
 
-.program-empty {
-  grid-column: 1 / -1;
+.academic-stage-kindergarten .academic-grade-title span {
+  color: var(--navy-950);
+}
+
+.academic-grade-card > p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.58;
+}
+
+.academic-stage-kindergarten .academic-grade-card > p {
+  margin: 0;
 }
 
 .our-story {
@@ -615,7 +687,12 @@ h3 {
   background: var(--line);
 }
 
+.story-timeline > .reveal {
+  height: 100%;
+}
+
 .story-timeline article {
+  height: 100%;
   min-height: 150px;
   padding: 22px;
   background: var(--sage-100);
@@ -692,6 +769,71 @@ h3 {
 .campus-content {
   align-self: stretch;
   padding: clamp(52px, 6vw, 84px);
+}
+
+.campus.about-campus {
+  grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+  gap: clamp(30px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(56px, 7vw, 88px) clamp(18px, 5vw, 72px);
+}
+
+.about-campus .campus-image {
+  min-height: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.about-campus .campus-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.about-campus .campus-content {
+  align-self: center;
+  padding: 0;
+}
+
+.campus-introduction {
+  max-width: 650px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.72;
+}
+
+.campus button.campus-preview {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px;
+  width: min(520px, 100%);
+  align-items: center;
+  margin-top: 34px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  text-align: left;
+}
+
+.campus-preview img {
+  display: block;
+  width: 150px;
+  height: auto;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.campus-preview span,
+.campus-preview strong,
+.campus-preview small {
+  display: block;
+}
+
+.campus-preview small {
+  margin-top: 8px;
+  color: var(--gold);
+  font-weight: 900;
 }
 
 .campus h2,
@@ -1070,7 +1212,11 @@ h3 {
 }
 
 @media (max-width: 1120px) {
-  .program-grid,
+  .campus.about-campus {
+    grid-template-columns: 1fr;
+  }
+
+
   .highlight-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1132,6 +1278,42 @@ h3 {
   }
 }
 @media (max-width: 760px) {
+  .campus button.campus-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .campus-preview img {
+    width: 100%;
+    height: auto;
+  }
+
+  .academic-stage {
+    padding: 22px;
+  }
+
+  .academic-stage-header {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .academic-grade-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .academic-stage-kindergarten .academic-grade-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .academic-stage-kindergarten .academic-grade-card {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .academic-stage-kindergarten .academic-grade-card > p {
+    margin-top: 14px;
+  }
+
+
   .primary-menu {
     display: none;
   }
@@ -1194,7 +1376,6 @@ h3 {
     display: grid;
   }
 
-  .program-grid,
   .search-results,
   .quote-grid,
   .stat-grid,
@@ -1205,12 +1386,10 @@ h3 {
   }
 
   .quote-card,
-  .program-card,
   .highlight-card {
     min-height: 260px;
   }
 
-  .program-card h3,
   .highlight-card h3 {
     margin-top: 28px;
   }

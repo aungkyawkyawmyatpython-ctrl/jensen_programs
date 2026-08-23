@@ -9,7 +9,6 @@ CREATE TABLE dbo.StudentApplications (
   CONSTRAINT CK_StudentApplications_Email_NotBlank CHECK (LEN(LTRIM(RTRIM(Email))) > 0),
   CONSTRAINT CK_StudentApplications_StudentGrade_Allowed CHECK (
     StudentGrade IN (
-      'Pre-K',
       'Kindergarten',
       'Grade 1',
       'Grade 2',

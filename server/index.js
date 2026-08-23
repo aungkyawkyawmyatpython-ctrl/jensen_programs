@@ -34,7 +34,6 @@ const rateLimitBuckets = new Map();
 let applicationWriteQueue = Promise.resolve();
 
 const allowedGrades = new Set([
-  "Pre-K",
   "Kindergarten",
   "Grade 1",
   "Grade 2",

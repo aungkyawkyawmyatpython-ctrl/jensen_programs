@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import { Reveal, SafeImage } from "./components/SiteElements";
 import Home from "./pages/Home";
 
@@ -8,6 +10,7 @@ const SCHOOL_IMAGES = {
   admissions: "/DSC00136.jpg",
   studentLife: "/DSC00344.jpg",
   campus: "/DSC00648.jpg",
+  frontView: "/viryaprivateschool_frontview.jpg",
 
   story: "/IMG_1105.JPG",
   community: "/IMG_1111.JPG",
@@ -17,7 +20,7 @@ const menuGroups = [
   {
     id: "academics",
     title: "Academics",
-    links: ["Pre-K", "Kindergarten", "Primary School", "Middle School"],
+    links: ["Kindergarten", "Primary School", "Middle School"],
     image: SCHOOL_IMAGES.academics,
   },
   {
@@ -41,8 +44,7 @@ const menuGroups = [
 ];
 
 const programs = [
-  ["Pre-K", "Ages 4 to 5", "Play, language, movement, art, and social confidence in a warm early learning room."],
-  ["Kindergarten", "Ages 5 to 6", "Early literacy, number sense, routines, friendship, discovery, and creative expression."],
+  ["Kindergarten", "Kindergarten", "Early literacy, number sense, routines, friendship, discovery, and creative expression."],
   ["Grade 1", "Primary School", "Reading fluency, foundational math, nature study, music, art, and classroom independence."],
   ["Grade 2", "Primary School", "Stronger writing, problem solving, science observation, projects, and collaborative habits."],
   ["Grade 3", "Primary School", "Research skills, multiplication, reading stamina, design challenges, and community service."],
@@ -52,7 +54,12 @@ const programs = [
   ["Grade 7", "Middle School", "Argument writing, algebra readiness, research, arts, athletics, and service learning."],
   ["Grade 8", "Middle School", "Independent projects, leadership roles, advanced labs, performance, and portfolio development."],
   ["Grade 9", "Middle School", "High-school readiness, advanced seminars, personal advising, and capstone preparation."],
-  ["Summer Studio", "June to July", "Short courses in robotics, performance, reading, design, and outdoor science."],
+];
+
+const programStages = [
+  ["kindergarten", "Kindergarten", "", "Kindergarten begins the VIRYA academic journey.", "Kindergarten"],
+  ["primary", "Primary School", "Grades 1–5", "Grades 1 through 5 make up the Primary School stage.", "Primary School"],
+  ["middle", "Middle School", "Grades 6–9", "Grades 6 through 9 make up the Middle School stage.", "Middle School"],
 ];
 
 const stats = [
@@ -134,7 +141,7 @@ const pageDetails = {
   academics: {
     title: "Academics",
     headline: "Programs built for confident learners.",
-    text: "Explore Virya's Pre-K through Grade 9 pathways, specialist teachers, enrichment blocks, and learning support.",
+    text: "Explore Virya's Kindergarten through Grade 9 pathways, specialist teachers, enrichment blocks, and learning support.",
     actions: [["admissions", "Ask About Placement", "button gold"]],
   },
   admissions: {
@@ -236,9 +243,7 @@ const pageHighlights = {
   ],
 };
 
-const gradeOptions = programs
-  .filter(([title]) => title !== "Summer Studio")
-  .map(([title]) => title);
+const gradeOptions = programs.map(([title]) => title);
 
 const searchItems = [
   ...menuGroups.map((group) => ({
@@ -363,102 +368,20 @@ function App() {
 
   return (
     <main className="site-shell" id="top">
-      <header className={`site-header ${headerHidden ? "hidden" : ""}`}>
-        <div className="main-nav">
-          <button className="brand" type="button" onClick={() => navigate("home")} aria-label="Virya home">
-            <img className="brand-logo" src="/viryaprivate.png" alt="" />
-            <span>
-              <strong>Virya</strong>
-              <small>Private School</small>
-            </span>
-          </button>
-
-          <nav className="primary-menu" aria-label="Primary navigation">
-            {menuGroups.map((group) => (
-              <button
-                className={page === group.id ? "active" : ""}
-                type="button"
-                onClick={() => navigate(group.id)}
-                key={group.title}
-              >
-                {group.title}
-              </button>
-            ))}
-          </nav>
-
-          <div className="nav-actions">
-            <button className="nav-apply" type="button" onClick={() => navigate("admissions")}>Apply</button>
-            <button
-              className={`nav-search ${searchOpen ? "active" : ""}`}
-              type="button"
-              onClick={() => setSearchOpen((current) => !current)}
-              aria-expanded={searchOpen}
-              aria-controls="site-search"
-            >
-              Search
-            </button>
-            <button
-              className="menu-toggle"
-              type="button"
-              onClick={() => setMobileMenuOpen((current) => !current)}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              Menu
-            </button>
-          </div>
-        </div>
-
-        {searchOpen && (
-          <div className="search-panel" id="site-search" role="search">
-            <label>
-              <span>What are you looking for?</span>
-              <input
-                type="search"
-                placeholder="Search admissions, Grade 4, calendar, clubs, tuition..."
-                value={searchTerm}
-                onChange={(event) => setSearchTerm(event.target.value)}
-                autoFocus
-              />
-            </label>
-            <button className="search-close" type="button" onClick={() => setSearchOpen(false)}>Close Search</button>
-            <div className="search-results">
-              {searchResults.length > 0 ? (
-                searchResults.map((item) => (
-                  <button type="button" onClick={() => navigate(item.target)} key={`${item.type}-${item.title}`}>
-                    <span>{item.type}</span>
-                    <strong>{item.title}</strong>
-                    <small>{item.text}</small>
-                  </button>
-                ))
-              ) : (
-                <p>No matches yet. Try "Grade 4", "visit", "arts", or "tuition".</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {mobileMenuOpen && (
-          <div className="mobile-menu" id="mobile-menu">
-            <nav aria-label="Mobile primary navigation">
-              <strong>Explore Virya</strong>
-              {menuGroups.map((group) => (
-                <button type="button" onClick={() => navigate(group.id)} key={group.title}>
-                  {group.title}
-                </button>
-              ))}
-            </nav>
-            <nav aria-label="Mobile quick links">
-              <strong>Quick Links</strong>
-              {utilityLinks.map(([target, label]) => (
-                <button type="button" onClick={() => navigate(target)} key={`mobile-${label}`}>
-                  {label}
-                </button>
-              ))}
-            </nav>
-          </div>
-        )}
-      </header>
+      <Header
+        headerHidden={headerHidden}
+        navigate={navigate}
+        menuGroups={menuGroups}
+        page={page}
+        searchOpen={searchOpen}
+        setSearchOpen={setSearchOpen}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        searchResults={searchResults}
+        utilityLinks={utilityLinks}
+      />
 
       {page === "home" && (
         <>
@@ -468,7 +391,7 @@ function App() {
           <OurStory />
           <Programs />
           <Why navigate={navigate} />
-          <Campus />
+          <Campus navigate={navigate} showHomePreview />
           <StoryStrip navigate={navigate} />
           <NewsEvents />
           <AdmissionsForm
@@ -491,7 +414,7 @@ function App() {
         />
       )}
 
-      <SiteFooter navigate={navigate} />
+      <Footer navigate={navigate} contactDetails={contactDetails} />
     </main>
   );
 }
@@ -558,52 +481,54 @@ function OurStory() {
 }
 
 function Programs() {
-  const [gradeSearch, setGradeSearch] = useState("");
-  const normalizedGradeSearch = gradeSearch.trim().toLowerCase();
-  const filteredPrograms = normalizedGradeSearch
-    ? programs.filter(([title, range, text]) =>
-        `${title} ${range} ${text}`.toLowerCase().includes(normalizedGradeSearch),
-      )
-    : programs;
-
   return (
-    <section className="section program-finder" id="programs">
-      <Reveal className="section-heading">
-        <p className="eyebrow">Find a Pathway</p>
-        <h2>Choose the learning stage that fits your child.</h2>
-      </Reveal>
-      <Reveal className="program-search" delay={80}>
-        <label>
-          <span>What grade are you looking for?</span>
-          <input
-            type="search"
-            placeholder="Search Pre-K, Kindergarten, Grade 4, arts, robotics..."
-            value={gradeSearch}
-            onChange={(event) => setGradeSearch(event.target.value)}
-          />
-        </label>
-      </Reveal>
-      <div className="program-grid">
-        {filteredPrograms.length > 0 ? (
-          filteredPrograms.map(([title, range, text], index) => (
-            <Reveal delay={index * 45} key={title}>
-              <article className="program-card">
-                <span>{range}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            </Reveal>
-          ))
-        ) : (
-          <Reveal className="program-empty">
-            <article className="program-card">
-              <span>No results</span>
-              <h3>No grade found</h3>
-              <p>Try Pre-K, Kindergarten, Grade 1, Grade 5, Middle School, arts, robotics, or Summer Studio.</p>
-              <button type="button" onClick={() => setGradeSearch("")}>Clear search</button>
-            </article>
-          </Reveal>
-        )}
+    <section className="section program-journey" id="programs">
+      <div className="program-journey-inner">
+        <Reveal className="section-heading program-journey-heading">
+          <p className="eyebrow">Academic Pathways</p>
+          <h2>Our Academic Journey</h2>
+          <p>
+            VIRYA provides a continuous learning pathway from Kindergarten through Grade 9.
+          </p>
+        </Reveal>
+
+        <div className="academic-stages">
+          {programStages.map(([id, stageTitle, range, introduction, level], stageIndex) => {
+            const stagePrograms = programs.filter(([, programLevel]) => programLevel === level);
+
+            return (
+              <section
+                className={"academic-stage academic-stage-" + id}
+                aria-labelledby={"academic-stage-" + id}
+                key={id}
+              >
+                <Reveal className="academic-stage-header">
+                  <div>
+                    <h3 id={"academic-stage-" + id}>{stageTitle}</h3>
+                    {range && <span>{range}</span>}
+                  </div>
+                  <p>{introduction}</p>
+                </Reveal>
+
+                <div className="academic-grade-grid">
+                  {stagePrograms.map(([title, , text], index) => (
+                    <Reveal delay={stageIndex * 35 + index * 45} key={title}>
+                      <article className="academic-grade-card">
+                        <div className="academic-grade-title">
+                          <h4>{title}</h4>
+                          <span aria-hidden="true">
+                            {title === "Kindergarten" ? "K" : title.replace("Grade ", "")}
+                          </span>
+                        </div>
+                        <p>{text}</p>
+                      </article>
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -641,15 +566,26 @@ function StatsGrid() {
   );
 }
 
-function Campus() {
+function Campus({ aboutPage = false, showHomePreview = false, navigate }) {
+  const campusImage = aboutPage ? SCHOOL_IMAGES.frontView : SCHOOL_IMAGES.campus;
+  const campusAlt = aboutPage
+    ? "Front view of VIRYA Private School campus"
+    : "Virya campus and school community";
+
   return (
-    <section className="campus" id="life">
+    <section className={`campus${aboutPage ? " about-campus" : ""}`} id="life">
       <Reveal className="campus-image" direction="left">
-        <SafeImage src={SCHOOL_IMAGES.campus} alt="Virya campus and school community" />
+        <SafeImage src={campusImage} alt={campusAlt} />
       </Reveal>
       <Reveal className="campus-content" direction="right">
         <p className="eyebrow">Visit Campus</p>
-        <h2>Spaces built for discovery, performance, and care.</h2>
+        <h2>{aboutPage ? "Our Campus" : "Spaces built for discovery, performance, and care."}</h2>
+        {aboutPage && (
+          <p className="campus-introduction">
+            VIRYA Private School provides a welcoming learning environment where students can learn,
+            grow, and take part in school life.
+          </p>
+        )}
         <div className="facility-list">
           {facilities.map(([title, text], index) => (
             <Reveal delay={index * 60} key={title}>
@@ -660,6 +596,18 @@ function Campus() {
             </Reveal>
           ))}
         </div>
+        {showHomePreview && (
+          <button className="campus-preview" type="button" onClick={() => navigate("about")}>
+            <SafeImage
+              src={SCHOOL_IMAGES.frontView}
+              alt="Front view of VIRYA Private School campus"
+            />
+            <span>
+              <strong>View Our Campus</strong>
+              <small>Discover Our School →</small>
+            </span>
+          </button>
+        )}
       </Reveal>
     </section>
   );
@@ -828,7 +776,9 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <InteriorHighlights page={page} navigate={navigate} />
       )}
 
-      {(page === "student-life" || page === "visit" || page === "about") && <Campus />}
+      {(page === "student-life" || page === "visit" || page === "about") && (
+        <Campus aboutPage={page === "about"} />
+      )}
       {(page === "news" || page === "calendar") && <NewsEvents />}
     </>
   );
@@ -881,59 +831,6 @@ function AboutTeam() {
         ))}
       </div>
     </section>
-  );
-}
-
-function SiteFooter({ navigate }) {
-  return (
-    <footer className="footer">
-      <Reveal className="footer-cta">
-        <div>
-          <h2>Begin at Virya</h2>
-          <p>Whether you are exploring, visiting, or ready to apply, we will help you take the next step.</p>
-        </div>
-      </Reveal>
-      <div className="footer-grid">
-        <Reveal>
-          <div className="footer-contact">
-            <div className="footer-brand">
-              <img src="/viryaprivate.png" alt="" />
-              <strong>Virya Private School</strong>
-            </div>
-            <strong>Contact Us</strong>
-            <address>{contactDetails.address}</address>
-            {contactDetails.phones.map((phone) => (
-              <a href={`tel:${phone}`} key={phone}>{phone}</a>
-            ))}
-            <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-          </div>
-        </Reveal>
-        <Reveal delay={80}>
-          <nav aria-label="Footer academics">
-            <strong>Academics</strong>
-            <button type="button" onClick={() => navigate("academics")}>Pre-K</button>
-            <button type="button" onClick={() => navigate("academics")}>Primary School</button>
-            <button type="button" onClick={() => navigate("academics")}>Middle School</button>
-          </nav>
-        </Reveal>
-        <Reveal delay={160}>
-          <nav aria-label="Footer admissions">
-            <strong>Admissions</strong>
-            <button type="button" onClick={() => navigate("admissions")}>Apply</button>
-            <button type="button" onClick={() => navigate("visit")}>Visit</button>
-            <button type="button" onClick={() => navigate("admissions")}>Tuition & Aid</button>
-          </nav>
-        </Reveal>
-        <Reveal delay={240}>
-          <nav aria-label="Footer community">
-            <strong>Community</strong>
-            <button type="button" onClick={() => navigate("news")}>News</button>
-            <button type="button" onClick={() => navigate("student-life")}>Student Life</button>
-            <button type="button" onClick={() => navigate("home")}>Back to Top</button>
-          </nav>
-        </Reveal>
-      </div>
-    </footer>
   );
 }
 
