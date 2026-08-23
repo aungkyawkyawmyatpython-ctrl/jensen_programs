@@ -355,9 +355,10 @@ function App() {
     }
 
     try {
-      const response = await fetch("/api/applications", {
+      const response = await fetch("https://formspree.io/f/xgawbpld", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        Accept: "application/json",
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
