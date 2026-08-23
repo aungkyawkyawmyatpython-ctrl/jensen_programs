@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Reveal, SafeImage } from "./components/SiteElements";
 import Home from "./pages/Home";
+import AboutInstitutionalSections from "./pages/About";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -453,29 +454,49 @@ function MissionVision() {
   );
 }
 
-function OurStory() {
+function JourneyTimeline() {
+  return (
+    <div className="story-timeline" aria-label="Virya milestones">
+      {storyMilestones.map(([date, text], index) => (
+        <Reveal delay={index * 60} key={date}>
+          <article>
+            <time>{date}</time>
+            <span>{text}</span>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function OurStory({ aboutPage = false, showTimeline = true }) {
   return (
     <section className="section our-story" id="story">
       <Reveal className="story-media" direction="left">
         <SafeImage src={SCHOOL_IMAGES.story} alt="Virya school community" />
       </Reveal>
       <Reveal className="story-content" direction="right">
-        <p className="eyebrow">Our Story</p>
+        <p className="eyebrow">{aboutPage ? "About VIRYA" : "Our Story"}</p>
         <h2>A small school with a future-focused mission.</h2>
         {storyParagraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
-        <div className="story-timeline" aria-label="Virya milestones">
-          {storyMilestones.map(([date, text], index) => (
-            <Reveal delay={index * 60} key={date}>
-              <article>
-                <time>{date}</time>
-                <span>{text}</span>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        {showTimeline && <JourneyTimeline />}
       </Reveal>
+    </section>
+  );
+}
+
+function OurJourney() {
+  return (
+    <section className="section about-journey">
+      <div className="about-content-container">
+        <Reveal className="section-heading">
+          <p className="eyebrow">Our History</p>
+          <h2>Our Journey</h2>
+        </Reveal>
+        <JourneyTimeline />
+      </div>
     </section>
   );
 }
@@ -586,16 +607,23 @@ function Campus({ aboutPage = false, showHomePreview = false, navigate }) {
             grow, and take part in school life.
           </p>
         )}
-        <div className="facility-list">
-          {facilities.map(([title, text], index) => (
-            <Reveal delay={index * 60} key={title}>
-              <article>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        {aboutPage ? (
+          <p className="about-copy-placeholder about-facilities-placeholder">
+            Official facilities information is awaiting confirmation from VIRYA
+            staff.
+          </p>
+        ) : (
+          <div className="facility-list">
+            {facilities.map(([title, text], index) => (
+              <Reveal delay={index * 60} key={title}>
+                <article>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        )}
         {showHomePreview && (
           <button className="campus-preview" type="button" onClick={() => navigate("about")}>
             <SafeImage
@@ -734,6 +762,19 @@ function AdmissionsForm({ application, submissionStatus, updateApplication, subm
   );
 }
 
+function AboutPageContent() {
+  return (
+    <>
+      <OurStory aboutPage showTimeline={false} />
+      <MissionVision />
+      <AboutInstitutionalSections />
+      <Campus aboutPage />
+      <OurJourney />
+      <AboutTeam />
+    </>
+  );
+}
+
 function InteriorPage({ page, navigate, application, submissionStatus, updateApplication, submitApplication }) {
   const content = pageDetails[page] || {
     title: "Virya",
@@ -759,27 +800,27 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         </Reveal>
       </section>
 
-      {page === "about" && <MissionVision />}
-      {page === "about" && <OurStory />}
-      {page === "about" && <AboutTeam />}
-
-      {page === "admissions" ? (
-        <AdmissionsForm
-          application={application}
-          submissionStatus={submissionStatus}
-          updateApplication={updateApplication}
-          submitApplication={submitApplication}
-        />
-      ) : page === "academics" ? (
-        <Programs />
+      {page === "about" ? (
+        <AboutPageContent />
       ) : (
-        <InteriorHighlights page={page} navigate={navigate} />
-      )}
+        <>
+          {page === "admissions" ? (
+            <AdmissionsForm
+              application={application}
+              submissionStatus={submissionStatus}
+              updateApplication={updateApplication}
+              submitApplication={submitApplication}
+            />
+          ) : page === "academics" ? (
+            <Programs />
+          ) : (
+            <InteriorHighlights page={page} navigate={navigate} />
+          )}
 
-      {(page === "student-life" || page === "visit" || page === "about") && (
-        <Campus aboutPage={page === "about"} />
+          {(page === "student-life" || page === "visit") && <Campus />}
+          {(page === "news" || page === "calendar") && <NewsEvents />}
+        </>
       )}
-      {(page === "news" || page === "calendar") && <NewsEvents />}
     </>
   );
 }
