@@ -9,6 +9,7 @@ import Admissions from "./pages/Admissions";
 import Faculty from "./pages/Faculty";
 import StudentLife from "./pages/StudentLife";
 import News from "./pages/News";
+import Contact from "./pages/Contact";
 
 const SCHOOL_IMAGES = {
   academics: "/DSC00134.jpg",
@@ -180,10 +181,10 @@ const pageDetails = {
     actions: [["community", "View School Numbers", "button gold"]],
   },
   visit: {
-    title: "Visit Virya",
-    headline: "See the campus in motion.",
-    text: "Choose an open morning, family consultation, or student shadow day to understand the Virya experience.",
-    actions: [["admissions", "Request a Visit", "button gold"]],
+    title: "Contact & Visit",
+    headline: "Contact VIRYA",
+    text: "Contact VIRYA Private School with questions, admissions inquiries, or to learn more about visiting the campus.",
+    actions: [],
   },
   news: {
     title: "News & Events",
@@ -818,7 +819,9 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
         <AboutPageContent navigate={navigate} />
       ) : (
         <>
-          {page === "news" ? (
+          {page === "visit" ? (
+            <Contact navigate={navigate} contactDetails={contactDetails} />
+          ) : page === "news" ? (
             <News navigate={navigate} />
           ) : page === "student-life" ? (
             <StudentLife />
@@ -844,7 +847,6 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             <InteriorHighlights page={page} navigate={navigate} />
           )}
 
-          {page === "visit" && <Campus />}
           {page === "calendar" && <NewsEvents />}
         </>
       )}

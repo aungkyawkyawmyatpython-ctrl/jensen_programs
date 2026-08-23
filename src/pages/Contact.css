@@ -1,0 +1,223 @@
+.contact-page {
+  background: var(--white);
+}
+
+.contact-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.contact-details-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(22rem, 1.15fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: start;
+}
+
+.contact-section-heading h2,
+.contact-visit-copy h2,
+.contact-location-copy h2,
+.contact-next-step h2 {
+  margin: 0.35rem 0 1rem;
+}
+
+.contact-section-heading > p:not(.eyebrow),
+.contact-visit-copy > p:not(.eyebrow),
+.contact-next-step p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.contact-section-heading address,
+.contact-location-copy address {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1.75rem;
+  color: var(--navy-800);
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.contact-section-heading address span,
+.contact-location-copy address span {
+  color: var(--muted);
+}
+
+.contact-channels {
+  border-top: 4px solid var(--teal-600);
+  background: var(--sage-100);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.contact-channel-group {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-channel-group:first-child {
+  padding-top: 0;
+}
+
+.contact-channel-group p {
+  margin: 0;
+  color: var(--teal-600);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-channel-group a {
+  width: fit-content;
+  color: var(--navy-900);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.contact-channel-group a:hover {
+  color: var(--teal-600);
+}
+
+.contact-channel-actions,
+.contact-next-step-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.contact-visit {
+  background: var(--sage-100);
+}
+
+.contact-visit-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: center;
+}
+
+.contact-campus-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-visit-copy > .button {
+  margin-top: 1.5rem;
+}
+
+.contact-location {
+  padding-block: clamp(3.25rem, 7vw, 5.25rem);
+}
+
+.contact-location-layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.62fr) minmax(0, 1fr);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.contact-map {
+  width: 100%;
+  max-width: 40rem;
+  min-width: 0;
+  justify-self: end;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.contact-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.contact-next-step {
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.contact-next-step > .reveal {
+  display: flex;
+  width: min(100%, 1180px);
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.contact-next-step h2 {
+  color: var(--white);
+}
+
+.contact-next-step p:not(.eyebrow) {
+  max-width: 44rem;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.contact-next-step .eyebrow {
+  color: var(--gold);
+}
+
+.contact-next-step-actions {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.contact-page a:focus-visible {
+  outline: 3px solid rgba(8, 127, 140, 0.4);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .contact-details-layout,
+  .contact-visit-layout,
+  .contact-location-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-visit-copy {
+    max-width: 42rem;
+  }
+
+  .contact-location-copy {
+    max-width: 36rem;
+  }
+
+  .contact-map {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .contact-next-step > .reveal {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-channel-actions,
+  .contact-next-step-actions {
+    display: grid;
+    width: 100%;
+  }
+
+  .contact-channel-actions .button,
+  .contact-next-step-actions .button {
+    width: 100%;
+  }
+
+  .contact-map {
+    padding: 0.4rem;
+  }
+}
