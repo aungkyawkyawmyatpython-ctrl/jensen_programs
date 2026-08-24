@@ -402,6 +402,9 @@ function App() {
 
   return (
     <main className="site-shell" id="top">
+      <a className="skip-link" href="#main-content">
+  Skip to main content
+      </a>
       <Header
         headerHidden={headerHidden}
         navigate={navigate}
@@ -418,6 +421,7 @@ function App() {
       />
 
       <ScrollToTop />
+      <div id="main-content" tabIndex="-1">
       <Routes>
         <Route
           path="/"
@@ -451,7 +455,7 @@ function App() {
         <Route path="/contact" element={<InteriorPage page="contact" navigate={navigate} application={application} submissionStatus={submissionStatus} updateApplication={updateApplication} submitApplication={submitApplication} />} />
         <Route path="*" element={<NotFound navigate={navigate} />} />
       </Routes>
-
+      </div>
       <Footer navigate={navigate} contactDetails={contactDetails} />
     </main>
   );
