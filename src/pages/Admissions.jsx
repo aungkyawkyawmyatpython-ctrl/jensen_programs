@@ -19,7 +19,7 @@ const schoolStrengths = [
 const programsOffered = [
   { name: "Kindergarten", grades: "Kindergarten" },
   { name: "Primary School", grades: "Grades 1–5" },
-  { name: "Middle School", grades: "Grades 6–9" },
+  { name: "Secondary School", grades: "Grades 6–9" },
 ];
 
 const inquirySteps = [
@@ -31,7 +31,7 @@ const inquirySteps = [
   {
     number: "02",
     title: "Choose a Program",
-    text: "Identify the Kindergarten, Primary School, or Middle School grade you are asking about.",
+    text: "Identify the Kindergarten, Primary School, or Secondary School grade you are asking about.",
   },
   {
     number: "03",
@@ -63,7 +63,7 @@ const admissionsInformation = [
 const admissionsFaq = [
   {
     question: "What grade levels does VIRYA offer?",
-    answer: "VIRYA offers Kindergarten, Primary School Grades 1–5, and Middle School Grades 6–9.",
+    answer: "VIRYA offers Kindergarten, Primary School Grades 1–5, and Secondary School Grades 6–9.",
   },
   {
     question: "How can I start an application?",

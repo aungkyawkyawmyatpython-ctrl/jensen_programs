@@ -26,7 +26,7 @@ const menuGroups = [
   {
     path: "/academics",
     title: "Academics",
-    links: ["Kindergarten", "Primary School", "Middle School"],
+    links: ["Kindergarten", "Primary School", "Secondary School"],
   },
   {
     path: "/admissions",
@@ -72,16 +72,16 @@ const programs = [
   ["Grade 3", "Primary School", "Research skills, multiplication, reading stamina, design challenges, and community service."],
   ["Grade 4", "Primary School", "Inquiry units, presentations, applied math, lab work, athletics, and arts exploration."],
   ["Grade 5", "Primary School", "Leadership practice, deeper projects, transition advising, and confident academic habits."],
-  ["Grade 6", "Middle School", "Seminars, advisory, lab science, world cultures, studio electives, and organization coaching."],
-  ["Grade 7", "Middle School", "Argument writing, algebra readiness, research, arts, athletics, and service learning."],
-  ["Grade 8", "Middle School", "Independent projects, leadership roles, advanced labs, performance, and portfolio development."],
-  ["Grade 9", "Middle School", "High-school readiness, advanced seminars, personal advising, and capstone preparation."],
+  ["Grade 6", "Secondary School", "Seminars, advisory, lab science, world cultures, studio electives, and organization coaching."],
+  ["Grade 7", "Secondary School", "Argument writing, algebra readiness, research, arts, athletics, and service learning."],
+  ["Grade 8", "Secondary School", "Independent projects, leadership roles, advanced labs, performance, and portfolio development."],
+  ["Grade 9", "Secondary School", "High-school readiness, advanced seminars, personal advising, and capstone preparation."],
 ];
 
 const programStages = [
   ["kindergarten", "Kindergarten", "", "Kindergarten begins the VIRYA academic journey.", "Kindergarten"],
   ["primary", "Primary School", "Grades 1–5", "Grades 1 through 5 make up the Primary School stage.", "Primary School"],
-  ["middle", "Middle School", "Grades 6–9", "Grades 6 through 9 make up the Middle School stage.", "Middle School"],
+  ["middle", "Secondary School", "Grades 6–9", "Grades 6 through 9 make up the Secondary School stage.", "Secondary School"],
 ];
 
 const kindergartenFocusAreas = [

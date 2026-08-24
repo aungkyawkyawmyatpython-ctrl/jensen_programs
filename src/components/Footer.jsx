@@ -34,7 +34,7 @@ export default function Footer({ navigate, contactDetails }) {
             <button type="button" onClick={() => navigate("/academics")}>Academics</button>
             <button type="button" onClick={() => navigate("/academics")}>Kindergarten</button>
             <button type="button" onClick={() => navigate("/academics")}>Primary School</button>
-            <button type="button" onClick={() => navigate("/academics")}>Middle School</button>
+            <button type="button" onClick={() => navigate("/academics")}>Secondary School</button>
             <button type="button" onClick={() => navigate("/calendar")}>Academic Calendar</button>
           </nav>
         </Reveal>
