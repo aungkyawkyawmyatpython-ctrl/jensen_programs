@@ -2,7 +2,6 @@ import "./Home.css";
 import { Reveal, SafeImage } from "../components/SiteElements";
 
 const HERO_IMAGE = "/DSC00001.jpg";
-const SCHOOL_LOGO = "/viryaprivate.png";
 
 export default function Home({ navigate }) {
   return (
@@ -16,13 +15,7 @@ export default function Home({ navigate }) {
       <div className="hero-shade" aria-hidden="true" />
 
       <Reveal className="hero-inner" direction="left">
-        <div className="hero-school-mark" aria-label="Virya Private School">
-          <img src={SCHOOL_LOGO} alt="Virya Private School logo" />
-          <span>
-            <strong>Virya</strong>
-            <small>Private School</small>
-          </span>
-        </div>
+        
 
         <div className="hero-copy">
           <p className="eyebrow">Independent private school - Kindergarten to Grade 9</p>
