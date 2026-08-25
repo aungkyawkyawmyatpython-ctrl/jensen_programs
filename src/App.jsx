@@ -143,7 +143,7 @@ const storyMilestones = [
 ];
 
 const contactDetails = {
-  address: "7/11, Thu Danu Street, Ward (4), Hpa An, Kayin State",
+  address: "N74/2, Theindawgyi-Kamaut Kasin Road, Yethar, Hpa An, Kayin State.",
   phones: ["09779137381", "09421127726"],
   email: "viryaprivateschool@gmail.com",
 };

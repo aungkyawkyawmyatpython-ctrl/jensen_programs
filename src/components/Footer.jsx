@@ -5,7 +5,7 @@ export default function Footer({ navigate, contactDetails }) {
     <footer className="footer">
       <Reveal className="footer-cta">
         <div>
-          <h2>Begin at Virya</h2>
+          <h2>Begin at VIRYA</h2>
           <p>Whether you are exploring, visiting, or ready to apply, we will help you take the next step.</p>
         </div>
       </Reveal>
@@ -30,7 +30,7 @@ export default function Footer({ navigate, contactDetails }) {
         </Reveal>
         <Reveal delay={80}>
           <nav aria-label="Footer academics">
-            <strong>Academics</strong>
+            <strong>Academics Overview</strong>
             <button type="button" onClick={() => navigate("/academics")}>Academics</button>
             <button type="button" onClick={() => navigate("/academics")}>Kindergarten</button>
             <button type="button" onClick={() => navigate("/academics")}>Primary School</button>
@@ -40,7 +40,7 @@ export default function Footer({ navigate, contactDetails }) {
         </Reveal>
         <Reveal delay={160}>
           <nav aria-label="Footer admissions">
-            <strong>Admissions</strong>
+            <strong>Admissions Overview</strong>
             <button type="button" onClick={() => navigate("/admissions")}>Admissions</button>
             <button type="button" onClick={() => navigate("/apply")}>Apply</button>
           </nav>

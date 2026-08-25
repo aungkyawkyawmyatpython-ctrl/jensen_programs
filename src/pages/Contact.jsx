@@ -81,10 +81,23 @@ export default function Contact({ navigate, contactDetails }) {
             </address>
           </Reveal>
           <Reveal className="contact-map" direction="right">
-            <SafeImage
-              src="/schoolmap.png"
-              alt="Map showing the location of VIRYA Private School"
+            <iframe
+            title="VIRYA Private School Location on Google Maps"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(
+              contactDetails.address
+            )}&output=embed`}
+            loading="lazy"
+            allowFullScreen
+            referrerpolicy="no-referrer-when-downgrade"
             />
+            <a
+              className="button navy contact-map-button"
+              href="https://maps.app.goo.gl/sg48oKfrixSqVjrc6"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open in Google Maps
+            </a>
           </Reveal>
         </div>
       </section>

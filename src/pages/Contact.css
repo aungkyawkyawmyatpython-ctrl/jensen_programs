@@ -129,9 +129,11 @@
 }
 
 .contact-map {
+  display: grid;
   width: 100%;
   max-width: 40rem;
   min-width: 0;
+  gap: 14px;
   justify-self: end;
   padding: clamp(0.75rem, 2vw, 1.25rem);
   border: 1px solid var(--line);
@@ -139,11 +141,16 @@
   background: var(--white);
 }
 
-.contact-map img {
+.contact-map iframe {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: clamp(360px, 42vw, 520px);
+  border: 0;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.contact-map-button {
+  justify-self: start;
 }
 
 .contact-next-step {
@@ -224,4 +231,7 @@
   .contact-map {
     padding: 0.4rem;
   }
+  .contact-map iframe {
+  height: 320px;
+}
 }
