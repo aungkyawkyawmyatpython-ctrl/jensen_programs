@@ -8,13 +8,13 @@ import "./Faculty.css";
 
 const facultyFilters = [
   { id: "all", label: "All", roles: null },
-  { id: "founders", label: "Founders", roles: ["တည်ထောင်သူ"] },
+  { id: "founders", label: "Founders", roles: ["Founder"] },
   {
     id: "administration",
     label: "Administration",
-    roles: ["ကြီးကြပ်အုပ်ချုပ်သူ"],
+    roles: ["Principal", "Admin Team"],
   },
-  { id: "teachers", label: "Teachers", roles: ["ဆရာ", "ဆရာမ"] },
+  { id: "teachers", label: "Teachers", roles: ["Teacher"] },
 ];
 
 export default function Faculty({ facultyData }) {
@@ -70,7 +70,7 @@ export default function Faculty({ facultyData }) {
                 )}
                 <div className="faculty-card-content">
                   <p className="faculty-role" lang="my">{role}</p>
-                  <h3 lang="my">{name}</h3>
+                  <h3 >{name}</h3>
                   {education && <p className="faculty-education">{education}</p>}
                 </div>
               </article>
