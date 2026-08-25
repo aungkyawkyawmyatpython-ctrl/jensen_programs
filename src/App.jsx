@@ -131,13 +131,15 @@ const storyParagraphs = [
   "Virya International Academy was founded in November 2021, followed by Virya Private School in June 2023.",
   "We are a small team and a small school with a future-focused mission. Virya, in Pali, means resilience and perseverance.",
   "Virya was founded because we believe passionately that all young people, regardless of background, can achieve great things.",
-  "Our goal is to provide students with choice and opportunity: to go to university if they wish, and to live happy, healthy, productive lives.",
+  "Our goal is to provide students with choice and opportunity and to lead happy, healthy, productive lives.",
+  "We teach our students to be responsible global citizens who also respect and preserve local cultures and traditions.",
+  "We nurture our students to be grittier and happier children."
 ];
 
 const storyMilestones = [
   ["Nov 2021", "Virya International Academy founded"],
   ["Jun 2023", "Virya Private School founded"],
-  ["Today", "A community of students, parents, and teachers united by high expectations"],
+  ["Today", "A Community of Students, Parents and Teachers with High Ambition and Shared Responsibility"],
 ];
 
 const contactDetails = {
@@ -147,22 +149,22 @@ const contactDetails = {
 };
 
 const teamMembers = [
-  ["တည်ထောင်သူ", "ဦးမင်းညီညီဝင်း", "Institute of Technical Education (Singapore)", "/faculty/u-min-nyi-nyi-win.jpg"],
-  ["တည်ထောင်သူ", "ဒေါ်ပြုံးသက်သက်ကျော်", "M.Sc. (University of Birmingham, UK)", "/faculty/daw-pyone-thet-thet-kyaw.jpg"],
-  ["ကြီးကြပ်အုပ်ချုပ်သူ", "ဒေါ်ညိုညို", "B.Sc. (မော်လမြိုင် ဒီဂရီကောလိပ်)", "/faculty/daw-nyo-nyo.jpg"],
-  ["ဆရာ", "ဦးကျော်လင်းထွေး", "B.Sc. (Physics)", "/faculty/u-kyaw-linn-htwe.jpg"],
-  ["ဆရာမ", "ဒေါ်ခင်သက်မော်", "M.Sc. (Chemistry)", "/faculty/daw-khin-thet-maw.jpg"],
-  ["ဆရာမ", "ဒေါ်နန်းဝင်းဝင်းအောင်", "B.A. (English, Hpa An University)", "/faculty/daw-nann-win-win-aung.jpg"],
-  ["ဆရာမ", "ဒေါ်နန်းနှင်းယုယု", "M.Sc. (Chemistry)", "/faculty/daw-nann-hnin-yu-yu.jpg"],
-  ["ဆရာမ", "ဒေါ်အေးသီတာခင်", "M.A. (Myanmar)", "/faculty/daw-aye-thida-khin.jpg"],
-  ["ဆရာမ", "ဒေါ်နှင်းယုမွန်", "B.A. (Myanmar)", "/faculty/daw-hnin-yu-mon.jpg"],
-  ["ဆရာမ", "ဒေါ်ဖြိုးသိင်္ဂီကျော်", "B.A. (English)", "/faculty/daw-phyo-thin-gyi-kyaw.jpg"],
-  ["ဆရာမ", "ဒေါ်ငြိမ်းမြတ်သွယ်", "B.Sc. (Botany)", "/faculty/daw-nyein-myat-thwe.jpg"],
-  ["ဆရာမ", "ဒေါ်စေးဘရင်းပေါလ်", "B.A. (Geography)", "/faculty/daw-say-bring-paul.jpg"],
-  ["ဆရာမ", "ဒေါ်ဝင့်စန္ဒာထွန်း", "B.A. (Myanmar)", "/faculty/daw-wint-sandar-htun.jpg"],
-  ["ဆရာမ", "ဒေါ်အေးအေးသိန်း", "B.Sc-B.Ed. (သင်္ချာ)", "/faculty/daw-aye-aye-thein.jpg"],
-  ["ဆရာမ", "ဒေါ်ဖူးသက်ညွှန်းစိမ်း", "B.Com. (Eco)", "/faculty/daw-phu-thet-nyunt-sein.jpg"],
-  ["ဆရာမ", "ဒေါ်မိုးအိအိဇော်", "B.Sc. (Math)", null],
+  ["Founder", "U Min Nyi Nyi Win", "Institute of Technical Education (Singapore)", "/faculty/u-min-nyi-nyi-win.jpg"],
+  ["Founder", "Daw Pyone Thet Thet Kyaw", "M.Sc. (University of Birmingham, UK)", "/faculty/daw-pyone-thet-thet-kyaw.jpg"],
+  ["Supervisor", "Daw Nyo Nyo", "B.Sc. (မော်လမြိုင် ဒီဂရီကောလိပ်)", "/faculty/daw-nyo-nyo.jpg"],
+  ["Teacher", "U Kyaw Lin Htwe", "B.Sc. (Physics)", "/faculty/u-kyaw-linn-htwe.jpg"],
+  ["Teacher", "Daw Khin Thet Maw", "M.Sc. (Chemistry)", "/faculty/daw-khin-thet-maw.jpg"],
+  ["Teacher", "Daw Nan Win Win Aung", "B.A. (English, Hpa An University)", "/faculty/daw-nann-win-win-aung.jpg"],
+  ["Teacher", "Daw Hnin Yu Yu", "M.Sc. (Chemistry)", "/faculty/daw-nann-hnin-yu-yu.jpg"],
+  ["Teacher", "Daw Aye Thidar Khin", "M.A. (Myanmar)", "/faculty/daw-aye-thida-khin.jpg"],
+  ["Teacher", "Daw Hnin Yu Mon", "B.A. (Myanmar)", "/faculty/daw-hnin-yu-mon.jpg"],
+  ["Teacher", "Daw Phyo Theingi Kyaw", "B.A. (English)", "/faculty/daw-phyo-thin-gyi-kyaw.jpg"],
+  ["Teacher", "Daw Nyein Myat Thwe", "B.Sc. (Botany)", "/faculty/daw-nyein-myat-thwe.jpg"],
+  ["Teacher", "Daw Silvering Paul", "B.A. (Geography)", "/faculty/daw-say-bring-paul.jpg"],
+  ["Teacher", "Daw Wint Sandar Htun", "B.A. (Myanmar)", "/faculty/daw-wint-sandar-htun.jpg"],
+  ["Teacher", "Daw Aye Aye Thein", "B.Sc-B.Ed. (သင်္ချာ)", "/faculty/daw-aye-aye-thein.jpg"],
+  ["Teacher", "Daw Phoo Thet Nyoon Sein", "B.Com. (Eco)", "/faculty/daw-phu-thet-nyunt-sein.jpg"],
+  ["Teacher", "Daw Moe Ei Ei Zaw", "B.Sc. (Math)", null],
 ];
 
 const pageDetails = {

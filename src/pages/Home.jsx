@@ -19,9 +19,9 @@ export default function Home({ navigate }) {
 
         <div className="hero-copy">
           <p className="eyebrow">Independent private school - Kindergarten to Grade 9</p>
-          <h1 id="home-hero-title">A place to learn bravely and grow with purpose.</h1>
+          <h1 id="home-hero-title">Learn with courage and grow with purpose.</h1>
           <p className="hero-introduction">
-            Virya is a close-knit school in Hpa An where ambitious academics,
+            Virya is a close-knit community in Hpa An where ambitious academics,
             personal mentorship, and creative exploration help every student
             build the confidence to shape their future.
           </p>
