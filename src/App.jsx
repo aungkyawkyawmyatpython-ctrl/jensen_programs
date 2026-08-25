@@ -128,12 +128,12 @@ const missionVision = [
 ];
 
 const storyParagraphs = [
-  "Virya International Academy was founded in November 2021, followed by Virya Private School in June 2023.",
-  "We are a small team and a small school with a future-focused mission. Virya, in Pali, means resilience and perseverance.",
+  "Virya International Academy was founded in November 2021, followed by Virya Private School inauguration in June 2023.",
+  "We are a small team and a small school with a future-focused mission. Virya, in Pali, means resilience and perseverance which are the main traits that we help students adopt at Virya.",
   "Virya was founded because we believe passionately that all young people, regardless of background, can achieve great things.",
   "Our goal is to provide students with choice and opportunity and to lead happy, healthy, productive lives.",
   "We teach our students to be responsible global citizens who also respect and preserve local cultures and traditions.",
-  "We nurture our students to be grittier and happier children."
+  "We nurture our students to be grittier and happier children.",
 ];
 
 const storyMilestones = [
