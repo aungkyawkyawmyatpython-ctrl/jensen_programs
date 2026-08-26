@@ -158,7 +158,7 @@ const teamMembers = [
   ["Teacher", "Daw Mi Htay Htay Soe", "TBA", "/faculty/daw-htay-htay-soe.jpg"],
   ["Teacher", "Daw Su Su Win", "Certificate in Child Psychology", "/faculty/daw-su-su-win.jpg"],
   ["Teacher", "Daw Zin Mar Shwe","Certificate in Child Psychology","/faculty/daw-zin-mar-shwe.jpg"],
-  ["Teacher", "Daw Chit Po", "TBA", "/faculty/daw-chitpo.jpg"],
+  ["Teacher", "Daw Naw Chit Po Po Htwe", "TBA", "/faculty/daw-chitpo.jpg"],
   ["Teacher", "Daw Aye Thidar Khin", "M.A. (Myanmar)", "/faculty/daw-aye-thida-khin.jpg"],
   ["Teacher", "Daw Hnin Yu Mon", "B.A. (Myanmar)", "/faculty/daw-hnin-yu-mon.jpg"],
   ["Teacher", "Daw Phyo Theingi Kyaw", "B.A. (English)", "/faculty/daw-phyo-thin-gyi-kyaw.jpg"],
@@ -168,8 +168,12 @@ const teamMembers = [
   ["Teacher", "Daw Aye Aye Thein", "B.Sc-B.Ed. (Math)", "/faculty/daw-aye-aye-thein.jpg"],
   ["Teacher", "Daw Phoo Thet Nyoon Sein", "B.Com. (Eco)", "/faculty/daw-phu-thet-nyunt-sein.jpg"],
   ["Teacher", "Daw Moe Ei Ei Zaw", "B.Sc. (Math)", null],
-  ["Admin Team", "Daw Thazin Moe", "TBA", "/faculty/daw-thazin-moe.jpg"],
+  ["Teacher", "Daw Zar Zar Htwe", "TBA", null],
+  ["Teacher", "Daw Phyu Phyu", "TBA", null],
+  ["Teacher", "Daw Pho Pho", "TBA", null],
+  ["Teacher", "Daw Amy Mon", "TBA", null],
   ["Admin Team", "Daw Snow", "TBA", null],
+  ["Admin Team", "Daw Khaing Thazin", "TBA", "/faculty/daw-thazin-moe.jpg"],
 ];
 
 const pageDetails = {
