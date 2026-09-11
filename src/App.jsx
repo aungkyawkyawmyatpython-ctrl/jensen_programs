@@ -170,7 +170,7 @@ const teamMembers = [
   ["Teacher", "Daw Moe Ei Ei Zaw", "B.Sc. (Math)", null],
   ["Teacher", "Daw Zar Zar Htwe", "TBA", null],
   ["Teacher", "Daw Phyu Phyu", "TBA", null],
-  ["Teacher", "Daw Pho Pho", "TBA", null],
+  ["Teacher", "Daw Phoo Phoo", "TBA", null],
   ["Teacher", "Daw Amy Mon", "TBA", null],
   ["Admin Team", "Daw Snow", "TBA", null],
   ["Admin Team", "Daw Khaing Thazin", "TBA", "/faculty/daw-thazin-moe.jpg"],
