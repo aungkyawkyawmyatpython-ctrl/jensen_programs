@@ -82,8 +82,6 @@ const admissionsFaq = [
 export default function Admissions({
   navigate,
   contactDetails,
-  onApply,
-  applicationForm,
 }) {
   return (
     <div className="admissions-page">
@@ -202,21 +200,19 @@ export default function Admissions({
 
       <section className="section admissions-final-cta" aria-labelledby="admissions-ready-title">
         <Reveal>
-          <p className="eyebrow">Admissions</p>
-          <h2 id="admissions-ready-title">Ready to Begin?</h2>
-          <p>Start with the current online inquiry form or contact VIRYA directly.</p>
+          <p className="eyebrow">Take the Next Step</p>
+          <h2 id="admissions-ready-title">Ready to begin?</h2>
+          <p>Start an admissions inquiry or contact VIRYA if you have questions before applying.</p>
           <div>
-            <button className="button gold" type="button" onClick={onApply}>
-              Apply Now
+            <button className="button gold" type="button" onClick={() => navigate("/apply")}>
+              Start an Inquiry
             </button>
-            <a className="admissions-contact-cta" href={`mailto:${contactDetails.email}`}>
+            <button className="button outline" type="button" onClick={() => navigate("/contact")}>
               Contact VIRYA
-            </a>
+            </button>
           </div>
         </Reveal>
       </section>
-
-      <div className="admissions-application-entry">{applicationForm}</div>
     </div>
   );
 }

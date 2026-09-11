@@ -1,4 +1,5 @@
 .news-hub {
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
   background: var(--blue-gray-50);
 }
 
@@ -156,17 +157,31 @@
 }
 
 .news-activity-reference {
-  background: var(--navy-900);
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(18px, 5vw, 72px);
+  background: var(--blue-gray-50);
   color: var(--white);
 }
 
 .news-activity-reference > .reveal {
   display: flex;
   width: min(100%, 1180px);
-  justify-content: space-between;
-  gap: 2rem;
+  justify-content: flex-start;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
   align-items: center;
   margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 3.5rem);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 18, 37, 0.92) 0%,
+      rgba(3, 18, 37, 0.80) 52%,
+      rgba(3, 18, 37, 0.56) 100%
+    ),
+    url("/DSC08351.jpg") center / cover;
+
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .news-activity-reference .eyebrow {
@@ -176,6 +191,7 @@
 .news-activity-reference h2 {
   margin: 0.35rem 0 0.7rem;
   color: var(--white);
+  font-size: clamp(2rem, 3vw, 2.65rem);
 }
 
 .news-activity-reference p:not(.eyebrow) {

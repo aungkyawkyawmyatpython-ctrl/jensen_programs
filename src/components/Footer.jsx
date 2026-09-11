@@ -1,22 +1,30 @@
+import { useLocation } from "react-router-dom";
 import { Reveal } from "./SiteElements";
 
+const FOOTER_CTA_HIDDEN_ROUTES = new Set(["/contact", "/admissions", "/apply"]);
+
 export default function Footer({ navigate, contactDetails }) {
+  const { pathname } = useLocation();
+  const showFooterCta = !FOOTER_CTA_HIDDEN_ROUTES.has(pathname);
+
   return (
     <footer className="footer">
-      <Reveal className="footer-cta">
-        <div>
-          <h2>Begin at VIRYA</h2>
-          <p>Whether you are exploring, visiting, or ready to apply, we will help you take the next step.</p>
-        </div>
-        <div className="footer-cta-actions">
-          <button className="button gold" type="button" onClick={() => navigate("/apply")}>
-            Apply Now
-          </button>
-          <button className="button outline" type="button" onClick={() => navigate("/contact")}>
-            Plan a Visit
-          </button>
-        </div>
-      </Reveal>
+      {showFooterCta && (
+        <Reveal className="footer-cta">
+          <div>
+            <h2>Begin at VIRYA</h2>
+            <p>Whether you are exploring, visiting, or ready to apply, we will help you take the next step.</p>
+          </div>
+          <div className="footer-cta-actions">
+            <button className="button gold" type="button" onClick={() => navigate("/apply")}>
+              Apply Now
+            </button>
+            <button className="button outline" type="button" onClick={() => navigate("/contact")}>
+              Plan a Visit
+            </button>
+          </div>
+        </Reveal>
+      )}
       <div className="footer-grid">
         <Reveal>
           <div className="footer-contact">

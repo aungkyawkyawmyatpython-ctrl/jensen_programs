@@ -1238,12 +1238,6 @@ h3 {
 }
 
 @media (min-width: 961px) {
-  .apply-inquiry {
-    --apply-form-overlap: clamp(32px, 2.8vw, 42px);
-    min-height: 0;
-    padding-bottom: 0;
-  }
-
   .apply-inquiry-inner {
     grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
   }
@@ -1261,7 +1255,6 @@ h3 {
     padding: clamp(22px, 2.5vw, 30px);
     border-top: 3px solid var(--gold);
     box-shadow: 0 20px 44px rgba(3, 18, 37, 0.24);
-    transform: translateY(var(--apply-form-overlap));
   }
 
   .apply-inquiry .inquiry-form button {

@@ -232,7 +232,15 @@
 }
 
 .admissions-final-cta {
-  background: var(--navy-900);
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 18, 37, 0.94) 0%,
+      rgba(3, 18, 37, 0.82) 52%,
+      rgba(3, 18, 37, 0.58) 100%
+    ),
+    url("/DSC00134.jpg") center / cover;
   color: var(--white);
 }
 
@@ -263,25 +271,6 @@
   margin-top: 1.5rem;
 }
 
-.admissions-contact-cta {
-  display: inline-flex;
-  min-height: 48px;
-  align-items: center;
-  padding: 0.8rem 1.05rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: var(--radius);
-  color: var(--white);
-  font-weight: 850;
-}
-
-.admissions-contact-cta:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-.admissions-application-entry .admissions {
-  scroll-margin-top: 6rem;
-}
 
 @media (max-width: 1000px) {
   .admissions-steps {
@@ -326,9 +315,8 @@
     flex-direction: column;
   }
 
-  .admissions-final-cta .button,
-  .admissions-contact-cta {
-    width: 100%;
-    justify-content: center;
-  }
+ .admissions-final-cta .button {
+  width: 100%;
+  justify-content: center;
+}
 }

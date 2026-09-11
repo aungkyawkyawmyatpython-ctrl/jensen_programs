@@ -445,12 +445,6 @@ function App() {
               <Programs />
               <ViryaStrengths navigate={navigate} />
               <Campus navigate={navigate} showHomePreview />
-              <AdmissionsForm
-                application={application}
-                submissionStatus={submissionStatus}
-                updateApplication={updateApplication}
-                submitApplication={submitApplication}
-              />
             </>
           }
         />
@@ -777,43 +771,23 @@ function AdmissionsForm({
   submitApplication,
   unifiedContent,
 }) {
-  const form = (
-    <InquiryForm
-      application={application}
-      submissionStatus={submissionStatus}
-      updateApplication={updateApplication}
-      submitApplication={submitApplication}
-    />
-  );
-
-  if (unifiedContent) {
-    return (
-      <section className="apply-inquiry" id="admissions-inquiry" aria-labelledby="apply-inquiry-title">
-        <div className="apply-inquiry-inner">
-          <Reveal className="apply-inquiry-copy" direction="left">
-            <p className="eyebrow">{unifiedContent.title}</p>
-            <h1 id="apply-inquiry-title">{unifiedContent.headline}</h1>
-            <p>{unifiedContent.text}</p>
-          </Reveal>
-          <Reveal className="apply-inquiry-form" direction="right">
-            {form}
-          </Reveal>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="section admissions" id="admissions-inquiry">
-      <Reveal className="admissions-copy" direction="left">
-        <p className="eyebrow">Take the Next Step</p>
-        <h2>Start an admissions inquiry.</h2>
-        <p>
-          Share a few details and our admissions team will follow up with the
-          right next step for your family.
-        </p>
-      </Reveal>
-      <Reveal direction="right">{form}</Reveal>
+    <section className="apply-inquiry" id="admissions-inquiry" aria-labelledby="apply-inquiry-title">
+      <div className="apply-inquiry-inner">
+        <Reveal className="apply-inquiry-copy" direction="left">
+          <p className="eyebrow">{unifiedContent.title}</p>
+          <h1 id="apply-inquiry-title">{unifiedContent.headline}</h1>
+          <p>{unifiedContent.text}</p>
+        </Reveal>
+        <Reveal className="apply-inquiry-form" direction="right">
+          <InquiryForm
+            application={application}
+            submissionStatus={submissionStatus}
+            updateApplication={updateApplication}
+            submitApplication={submitApplication}
+          />
+        </Reveal>
+      </div>
     </section>
   );
 }
@@ -894,15 +868,6 @@ function InteriorPage({ page, navigate, application, submissionStatus, updateApp
             <Admissions
               navigate={navigate}
               contactDetails={contactDetails}
-              onApply={() => navigate("/apply")}
-              applicationForm={
-                <AdmissionsForm
-                  application={application}
-                  submissionStatus={submissionStatus}
-                  updateApplication={updateApplication}
-                  submitApplication={submitApplication}
-                />
-              }
             />
           ) : page === "academics" ? (
             <Programs />
