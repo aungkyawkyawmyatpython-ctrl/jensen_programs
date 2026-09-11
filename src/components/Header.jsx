@@ -80,7 +80,7 @@ export default function Header({
 
         <div className="nav-actions">
           <button
-            className={`nav-apply ${pathname === "/apply" ? "active" : ""}`}
+            className={`nav-apply ${pathname === "/apply" && !searchOpen ? "active" : ""}`}
             type="button"
             onClick={() => navigate("/apply")}
             aria-current={pathname === "/apply" ? "page" : undefined}

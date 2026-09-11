@@ -83,9 +83,7 @@ export default function Contact({ navigate, contactDetails }) {
           <Reveal className="contact-map" direction="right">
             <iframe
             title="VIRYA Private School Location on Google Maps"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(
-              contactDetails.address
-            )}&output=embed`}
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3868.2907501928344!2d97.6543724!3d16.8476854!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c2c9b9eb433a6d%3A0x2aef45505f5abb66!2sVirya%20Private%20School%20-%20Theindawgyi%20Kamaut%20Kasin%20Campus!5e1!3m2!1sen!2smm!4v1789144748008!5m2!1sen!2smm"
             loading="lazy"
             allowFullScreen
             referrerpolicy="no-referrer-when-downgrade"

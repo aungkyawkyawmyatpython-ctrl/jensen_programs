@@ -8,6 +8,14 @@ export default function Footer({ navigate, contactDetails }) {
           <h2>Begin at VIRYA</h2>
           <p>Whether you are exploring, visiting, or ready to apply, we will help you take the next step.</p>
         </div>
+        <div className="footer-cta-actions">
+          <button className="button gold" type="button" onClick={() => navigate("/apply")}>
+            Apply Now
+          </button>
+          <button className="button outline" type="button" onClick={() => navigate("/contact")}>
+            Plan a Visit
+          </button>
+        </div>
       </Reveal>
       <div className="footer-grid">
         <Reveal>
@@ -30,8 +38,9 @@ export default function Footer({ navigate, contactDetails }) {
         </Reveal>
         <Reveal delay={80}>
           <nav aria-label="Footer academics">
-            <strong>Academics Overview</strong>
-            <button type="button" onClick={() => navigate("/academics")}>Academics</button>
+            <h2 className="footer-nav-heading">
+              <button type="button" onClick={() => navigate("/academics")}>Academics</button>
+            </h2>
             <button type="button" onClick={() => navigate("/academics")}>Kindergarten</button>
             <button type="button" onClick={() => navigate("/academics")}>Primary School</button>
             <button type="button" onClick={() => navigate("/academics")}>Secondary School</button>
@@ -40,9 +49,10 @@ export default function Footer({ navigate, contactDetails }) {
         </Reveal>
         <Reveal delay={160}>
           <nav aria-label="Footer admissions">
-            <strong>Admissions Overview</strong>
-            <button type="button" onClick={() => navigate("/admissions")}>Admissions</button>
-            <button type="button" onClick={() => navigate("/apply")}>Apply</button>
+            <h2 className="footer-nav-heading">
+              <button type="button" onClick={() => navigate("/admissions")}>Admissions</button>
+            </h2>
+            <button type="button" onClick={() => navigate("/apply")}>Application Form</button>
           </nav>
         </Reveal>
         <Reveal delay={240}>
