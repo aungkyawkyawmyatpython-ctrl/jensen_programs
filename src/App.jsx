@@ -174,6 +174,7 @@ const teamMembers = [
   ["Teacher", "Daw Amy Mon", "TBA", null],
   ["Admin Team", "Daw Snow", "TBA", null],
   ["Admin Team", "Daw Khaing Thazin", "TBA", "/faculty/daw-thazin-moe.jpg"],
+  ["Admin Team", "U Kyaw Kyaw", "B.A. (Geography, Taungoo University), D.S.E (Taungoo University)",null]
 ];
 
 const pageDetails = {
